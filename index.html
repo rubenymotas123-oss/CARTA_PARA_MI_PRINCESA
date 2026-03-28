@@ -78,14 +78,14 @@
     }
 
     .photo {
-      width: 340px;
-      height: 240px;
-      margin: 0 auto 25px;
-      border-radius: 20%;
-      overflow: hidden;
-      border: 5px solid #ffffff;
-      box-shadow: 0 8px 20px rgba(209, 77, 114, 0.25);
-    }
+    width: min(100%, 340px);
+    aspect-ratio: 340 / 240;
+    margin: 0 auto 25px;
+    border-radius: 20%;
+    overflow: hidden;
+    border: 5px solid #ffffff;
+    box-shadow: 0 8px 20px rgba(209, 77, 114, 0.25);
+  }
 
     .photo img {
       width: 100%;
