@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ti</title>
+
+  <!-- Fuente bonita -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+     min-height: 100vh;
+     font-family: 'Poppins', sans-serif;
+     background: url("us.jpg") center/cover no-repeat;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 30px;
+     overflow-x: hidden;
+    }
+    .card {
+      width: 100%;
+      max-width: 850px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+      padding: 40px 30px;
+      position: relative;
+      animation: fadeUp 1s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.18;
+      animation: float 8s linear infinite;
+    }
+
+    .heart:nth-child(1) { left: 8%; top: 85%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 20%; top: 95%; animation-delay: 1.2s; }
+    .heart:nth-child(3) { left: 38%; top: 90%; animation-delay: 2.5s; }
+    .heart:nth-child(4) { left: 55%; top: 88%; animation-delay: 0.8s; }
+    .heart:nth-child(5) { left: 72%; top: 92%; animation-delay: 3.5s; }
+    .heart:nth-child(6) { left: 88%; top: 94%; animation-delay: 1.8s; }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      text-align: center;
+      color: #d14d72;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #8a4a5b;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .photo {
+      width: 340px;
+      height: 240px;
+      margin: 0 auto 25px;
+      border-radius: 20%;
+      overflow: hidden;
+      border: 5px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(209, 77, 114, 0.25);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .letter {
+      color: #4b2c35;
+      font-size: 1rem;
+      line-height: 1.9;
+      text-align: justify;
+      white-space: pre-line;
+    }
+
+.highlight {
+  color: #c43c67;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+        font-family: 'Great Vibes';
+}
+
+    .signature {
+      margin-top: 30px;
+      text-align: right;
+      color: #8a4a5b;
+    }
+
+    .signature .name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #d14d72;
+    }
+
+    .btn-box {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .love-btn {
+      border: none;
+      background: #d14d72;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 8px 18px rgba(209, 77, 114, 0.25);
+    }
+
+    .love-btn:hover {
+      transform: scale(1.05);
+      background: #bb3f63;
+    }
+
+    .message-box {
+      margin-top: 20px;
+      text-align: center;
+      color: #8a4a5b;
+      font-size: 0.95rem;
+      min-height: 24px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.18;
+      }
+      100% {
+        transform: translateY(-700px) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 28px 20px;
+      }
+
+      .title {
+        font-size: 3rem;
+      }
+
+      .letter {
+        font-size: 0.96rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="hearts">
+      <div class="heart">❤</div>
+      <div class="heart">❤</div>
+      <div class="heart">❤</div>
+      <div class="heart">❤</div>
+      <div class="heart">❤</div>
+      <div class="heart">❤</div>
+    </div>
+
+    <h1 class="title">Para mi solecito</h1>
+    <p class="subtitle"></p>
+
+    <!-- Cambia la imagen -->
+    <div class="photo">
+      <img src="nosotros.JPG" alt="Foto especial">
+    </div>
+
+    <div class="letter">
+      <p>
+         <span class="highlight">Mi princesa, mi niña de ojos color Sol.</span>
+
+        Hola mi amor, hoy en el día día que cumplimos nuestros tercer mes oficial siendo tu y yo mi niña queria darte algo especial, pero sin pasar por alto o dejar un lo siento desde el fondo de mi corazón por fallar. 
+        
+        Se que no te gusta que pida perdón y menos tan repetitivamente, pero hay puntos donde es necesario. Mas que solo pedir perdón o dar palabras vacias, si no con acciones en las que deposito mi amor infinito que te tengo todos los días de mi vida. 
+
+        Hoy en nuestro día especial queria decirte que agradezco a Dios por permitirme tener a una chica tan increible junto a mi, tan linda e inteligente, que me inspira y me empuja todos los días de mi vida aunque sean suaves o pesados a seguir adelante y 
+        mejorar.
+
+        Se que no han sido los mejores días amor de mi vida, pero ni un día dudo de que eres y serás tu la mujer que quiero a mi lado, a la cual quiero ver crecer y a la cual quiero apoyar incondicionalmente.
+
+        Cada regalito va con intención y amor, espero te guste mi princesa,
+
+        Gracias, por estar a mi lado, gracias por aguantar mi forma de ser y gracias por elegirme tambien,
+
+        Te amo y más mi niña, aunque a veces sea muy frio, eres mi solecito del corazón,
+
+        Siempre estare aunque este lejos para apoyarte, por que eres el amor de mi vida
+
+        Con todo mi amor
+    </p>
+    </div>
+
+    <div class="signature">
+      <p>Siempre para ti,</p>
+      <div class="name">Dario</div>
+    </div>
+
+    <div class="btn-box">
+      <button class="love-btn" onclick="mostrarMensaje()">Haz clic aquí ❤</button>
+    </div>
+
+    <div class="message-box" id="mensaje"></div>
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      const mensajes = [
+        "Te amo y más",
+        "Si vez esto, me debes mil besitos.",
+        "Amo tus ojitos.",
+        "Eres tú mi princesa"
+      ];
+
+      const aleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
+      document.getElementById("mensaje").textContent = aleatorio;
+    }
+  </script>
+
+</body>
+</html>
