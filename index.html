@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para Ti</title>
 
-  <!-- Fuente bonita -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,27 +16,293 @@
       box-sizing: border-box;
     }
 
-    body {
-     min-height: 100vh;
-     font-family: 'Poppins', sans-serif;
-     background: url("us.jpg") center/cover no-repeat;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     padding: 30px;
-     overflow-x: hidden;
+    :root {
+      --rosa: #f49ab8;
+      --rosa-oscuro: #e8759e;
+      --rosa-claro: #ffd6e5;
+      --rosa-muy-claro: #fff2f7;
+
+      --durazno: #ffd7c2;
+      --verde-suave: #dff3c6;
+      --verde-brillo: #c9efa4;
+      --azul-suave: #d8ecff;
+
+      --texto: #5b3b49;
+      --texto-suave: #8b5d6d;
+
+      --suave: rgba(255, 244, 249, 0.86);
+      --borde-suave: rgba(255, 214, 229, 0.75);
+      --sombra-rosa: rgba(244, 154, 184, 0.35);
     }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: url("us.jpg") center/cover no-repeat fixed;
+      overflow-x: hidden;
+      color: var(--texto);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 214, 229, 0.52), transparent 38%),
+        radial-gradient(circle at 82% 14%, rgba(223, 243, 198, 0.30), transparent 32%),
+        radial-gradient(circle at 65% 85%, rgba(216, 236, 255, 0.24), transparent 38%),
+        linear-gradient(135deg, rgba(255, 242, 247, 0.55), rgba(255, 215, 194, 0.22));
+      z-index: -1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==============================
+       PANTALLA DE CONTRASEÑA
+    ============================== */
+
+    .password-screen,
+    .envelope-screen {
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .password-card {
+      width: min(100%, 430px);
+      background: rgba(255, 244, 249, 0.9);
+      backdrop-filter: blur(14px);
+      border-radius: 30px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(91, 59, 73, 0.18);
+      border: 1px solid var(--borde-suave);
+      animation: fadeUp 0.9s ease;
+    }
+
+    .password-card h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.4rem;
+      color: var(--rosa-oscuro);
+      margin-bottom: 8px;
+      text-shadow: 0 4px 12px rgba(244, 154, 184, 0.28);
+    }
+
+    .password-card p {
+      color: var(--texto-suave);
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+    }
+
+    .password-card input {
+      width: 100%;
+      border: 1px solid rgba(244, 154, 184, 0.45);
+      outline: none;
+      padding: 14px 16px;
+      border-radius: 999px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--texto);
+      background: rgba(255, 255, 255, 0.88);
+      margin-bottom: 14px;
+      box-shadow: inset 0 2px 8px rgba(244, 154, 184, 0.08);
+    }
+
+    .password-card input:focus {
+      border-color: var(--rosa);
+      box-shadow: 0 0 0 4px rgba(244, 154, 184, 0.18);
+    }
+
+    .password-error {
+      min-height: 22px;
+      color: var(--rosa-oscuro);
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    /* ==============================
+       BOTONES
+    ============================== */
+
+    .love-btn,
+    .music-toggle,
+    .carousel-btn,
+    .close-note {
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .love-btn {
+      background: linear-gradient(135deg, #f8a8c3, #e8759e);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px var(--sombra-rosa);
+    }
+
+    .love-btn:hover,
+    .music-toggle:hover,
+    .carousel-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #f5b1ca, #df6f98);
+      box-shadow: 0 10px 24px rgba(232, 117, 158, 0.38);
+    }
+
+    .music-toggle {
+      position: fixed;
+      right: 18px;
+      top: 18px;
+      z-index: 20;
+      background: linear-gradient(135deg, rgba(248, 168, 195, 0.96), rgba(232, 117, 158, 0.96));
+      color: white;
+      padding: 11px 16px;
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(91, 59, 73, 0.18);
+      font-size: 0.9rem;
+    }
+
+    /* ==============================
+       SOBRE / ANIMACIÓN DE CARTA
+    ============================== */
+
+    .envelope-box {
+      text-align: center;
+      animation: fadeUp 0.9s ease;
+    }
+
+    .envelope {
+      width: 290px;
+      height: 190px;
+      position: relative;
+      cursor: pointer;
+      margin: 0 auto 28px;
+      filter: drop-shadow(0 18px 28px rgba(91, 59, 73, 0.22));
+    }
+
+    .envelope-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ffd6e5, #f49ab8);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .envelope-base::before,
+    .envelope-base::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      background: rgba(255, 255, 255, 0.35);
+      transform: rotate(45deg);
+      bottom: -120px;
+    }
+
+    .envelope-base::before {
+      left: -70px;
+    }
+
+    .envelope-base::after {
+      right: -70px;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 0;
+      height: 0;
+      border-left: 145px solid transparent;
+      border-right: 145px solid transparent;
+      border-top: 100px solid #f8a8c3;
+      transform-origin: top;
+      transition: transform 0.8s ease;
+      z-index: 3;
+    }
+
+    .envelope-letter {
+      position: absolute;
+      left: 35px;
+      right: 35px;
+      bottom: 20px;
+      height: 125px;
+      background: rgba(255, 252, 254, 0.96);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--rosa-oscuro);
+      transition: transform 0.8s ease;
+      z-index: 2;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .envelope-letter {
+      transform: translateY(-88px);
+    }
+
+    .envelope-text {
+      color: var(--texto-suave);
+      background: rgba(255, 244, 249, 0.82);
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--borde-suave);
+    }
+
+    /* ==============================
+       CONTENIDO PRINCIPAL
+    ============================== */
+
+    .app {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 34px 24px;
+      position: relative;
+    }
+
     .card {
       width: 100%;
       max-width: 850px;
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+      background: var(--suave);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      box-shadow: 0 14px 40px rgba(91, 59, 73, 0.16);
       padding: 40px 30px;
       position: relative;
-      animation: fadeUp 1s ease;
-      border: 1px solid rgba(255,255,255,0.5);
+      border: 1px solid var(--borde-suave);
+      overflow: hidden;
+      animation: openLetter 0.9s ease both;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 214, 229, 0.45), transparent 35%),
+        radial-gradient(circle at 92% 22%, rgba(223, 243, 198, 0.28), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255, 215, 194, 0.26), transparent 38%);
+      z-index: 0;
     }
 
     .hearts {
@@ -46,12 +311,14 @@
       pointer-events: none;
       overflow: hidden;
       border-radius: 24px;
+      z-index: 0;
     }
 
     .heart {
       position: absolute;
       font-size: 20px;
-      opacity: 0.18;
+      opacity: 0.22;
+      color: #f49ab8;
       animation: float 8s linear infinite;
     }
 
@@ -66,92 +333,269 @@
       font-family: 'Great Vibes', cursive;
       font-size: 4rem;
       text-align: center;
-      color: #d14d72;
+      color: var(--rosa-oscuro);
       margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 4px 14px rgba(244, 154, 184, 0.28);
     }
 
     .subtitle {
       text-align: center;
-      color: #8a4a5b;
+      color: var(--texto-suave);
       font-size: 1rem;
       margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
     }
 
     .photo {
-    width: min(100%, 340px);
-    aspect-ratio: 340 / 240;
-    margin: 0 auto 25px;
-    border-radius: 20%;
-    overflow: hidden;
-    border: 5px solid #ffffff;
-    box-shadow: 0 8px 20px rgba(209, 77, 114, 0.25);
-  }
+      width: min(100%, 340px);
+      height: clamp(310px, 52vh, 460px);
+      margin: 0 auto 25px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 242, 247, 0.95);
+      box-shadow: 0 10px 24px rgba(244, 154, 184, 0.30);
+      position: relative;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 22% 16%, rgba(255, 214, 229, 0.55), transparent 38%),
+        radial-gradient(circle at 82% 84%, rgba(223, 243, 198, 0.34), transparent 38%),
+        linear-gradient(135deg, rgba(255, 242, 247, 0.82), rgba(255, 215, 194, 0.38));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     .photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
+      display: block;
     }
 
     .letter {
-      color: #4b2c35;
+      color: var(--texto);
       font-size: 1rem;
       line-height: 1.9;
       text-align: justify;
       white-space: pre-line;
+      position: relative;
+      z-index: 1;
     }
 
-.highlight {
-  color: #c43c67;
-  font-weight: 600;
-  display: block;
-  text-align: center;
-  font-size: 2rem;
-        font-family: 'Great Vibes';
-}
+    .highlight {
+      color: var(--rosa-oscuro);
+      font-weight: 600;
+      display: block;
+      text-align: center;
+      font-size: 2rem;
+      font-family: 'Great Vibes', cursive;
+    }
 
     .signature {
       margin-top: 30px;
       text-align: right;
-      color: #8a4a5b;
+      color: var(--texto-suave);
+      position: relative;
+      z-index: 1;
     }
 
     .signature .name {
       font-family: 'Great Vibes', cursive;
       font-size: 2.2rem;
-      color: #d14d72;
+      color: var(--rosa-oscuro);
     }
 
     .btn-box {
       display: flex;
       justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-top: 30px;
-    }
-
-    .love-btn {
-      border: none;
-      background: #d14d72;
-      color: white;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-      box-shadow: 0 8px 18px rgba(209, 77, 114, 0.25);
-    }
-
-    .love-btn:hover {
-      transform: scale(1.05);
-      background: #bb3f63;
+      position: relative;
+      z-index: 1;
     }
 
     .message-box {
       margin-top: 20px;
       text-align: center;
-      color: #8a4a5b;
-      font-size: 0.95rem;
+      color: var(--texto-suave);
+      font-size: 0.98rem;
       min-height: 24px;
+      position: relative;
+      z-index: 1;
     }
+
+    /* ==============================
+       CARRUSEL
+    ============================== */
+
+    .carousel-section {
+      margin-top: 38px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 154, 184, 0.32);
+      position: relative;
+      z-index: 1;
+    }
+
+    .carousel-title {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      color: var(--rosa-oscuro);
+      font-size: 2.6rem;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 12px rgba(244, 154, 184, 0.22);
+    }
+
+    .carousel {
+      display: grid;
+      grid-template-columns: 48px 1fr 48px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .carousel-frame {
+      width: 100%;
+      max-width: min(74vw, 430px);
+      height: clamp(430px, 72vh, 680px);
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 242, 247, 0.96);
+      box-shadow: 0 12px 28px rgba(244, 154, 184, 0.32);
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255, 214, 229, 0.55), transparent 38%),
+        radial-gradient(circle at 80% 78%, rgba(223, 243, 198, 0.34), transparent 38%),
+        radial-gradient(circle at 52% 46%, rgba(216, 236, 255, 0.22), transparent 42%),
+        linear-gradient(135deg, rgba(255, 242, 247, 0.92), rgba(255, 215, 194, 0.42));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      animation: softZoom 0.45s ease;
+    }
+
+    .carousel-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f8a8c3, #e8759e);
+      color: white;
+      font-size: 1.8rem;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 20px rgba(244, 154, 184, 0.30);
+    }
+
+    .carousel-caption {
+      text-align: center;
+      margin-top: 12px;
+      color: var(--texto-suave);
+      font-size: 0.96rem;
+    }
+
+    /* ==============================
+       NOTITAS ESCONDIDAS
+    ============================== */
+
+    .secret-note {
+      position: fixed;
+      z-index: 15;
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 214, 229, 0.72);
+      backdrop-filter: blur(8px);
+      color: #e8759e;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(244, 154, 184, 0.28);
+      opacity: 0.55;
+      animation: pulseSecret 2.4s ease-in-out infinite;
+    }
+
+    .secret-note:hover {
+      opacity: 1;
+      transform: scale(1.16);
+      background: rgba(255, 242, 247, 0.92);
+    }
+
+    .note-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(91, 59, 73, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .note-content {
+      width: min(100%, 420px);
+      background: rgba(255, 244, 249, 0.95);
+      border-radius: 28px;
+      padding: 30px 24px;
+      text-align: center;
+      color: var(--texto);
+      position: relative;
+      box-shadow: 0 18px 45px rgba(91, 59, 73, 0.22);
+      border: 1px solid var(--borde-suave);
+      animation: notePop 0.35s ease;
+    }
+
+    .note-content h3 {
+      font-family: 'Great Vibes', cursive;
+      color: var(--rosa-oscuro);
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .note-content p {
+      line-height: 1.7;
+      color: var(--texto-suave);
+    }
+
+    .close-note {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffd6e5;
+      color: var(--rosa-oscuro);
+      font-size: 1.1rem;
+    }
+
+    .heart-rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 60;
+    }
+
+    .falling-heart {
+      position: absolute;
+      top: -40px;
+      font-size: 24px;
+      animation: fallHeart 3.2s linear forwards;
+    }
+
+    /* ==============================
+       ANIMACIONES
+    ============================== */
 
     @keyframes fadeUp {
       from {
@@ -164,10 +608,21 @@
       }
     }
 
+    @keyframes openLetter {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96) rotateX(10deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0);
+      }
+    }
+
     @keyframes float {
       0% {
         transform: translateY(0) scale(1);
-        opacity: 0.18;
+        opacity: 0.22;
       }
       100% {
         transform: translateY(-700px) scale(1.4);
@@ -175,7 +630,49 @@
       }
     }
 
+    @keyframes softZoom {
+      from {
+        opacity: 0.45;
+        transform: scale(1.03);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulseSecret {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    @keyframes notePop {
+      from {
+        opacity: 0;
+        transform: scale(0.88);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fallHeart {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 600px) {
+      .app {
+        padding: 22px 14px;
+      }
+
       .card {
         padding: 28px 20px;
       }
@@ -187,79 +684,344 @@
       .letter {
         font-size: 0.96rem;
       }
+
+      .photo {
+        width: min(100%, 310px);
+        height: clamp(300px, 50vh, 430px);
+      }
+
+      .carousel {
+        grid-template-columns: 40px 1fr 40px;
+        gap: 6px;
+      }
+
+      .carousel-frame {
+        max-width: 100%;
+        height: clamp(410px, 70vh, 620px);
+        border-radius: 20px;
+      }
+
+      .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.45rem;
+      }
+
+      .music-toggle {
+        top: auto;
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .secret-note {
+        width: 30px;
+        height: 30px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!--
+    IMPORTANTE:
+    Sube tu canción al repositorio con el nombre musica.mp3.
+    Si quieres otro nombre, cambia src="musica.mp3" por el nombre real del archivo.
+  -->
+  <audio id="musicaFondo" src="musica.mp3" loop></audio>
 
-  <div class="card">
-    <div class="hearts">
-      <div class="heart">❤</div>
-      <div class="heart">❤</div>
-      <div class="heart">❤</div>
-      <div class="heart">❤</div>
-      <div class="heart">❤</div>
-      <div class="heart">❤</div>
+  <!-- PANTALLA DE CONTRASEÑA -->
+  <section class="password-screen" id="passwordScreen">
+    <div class="password-card">
+      <h1>Para mi Cielo 🤍</h1>
+      <p>Pista: Brilla mucho igual que tú, a veces hasta te llamo igual...</p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Escribe la contraseña"
+        autocomplete="off"
+      >
+
+      <button class="love-btn" onclick="validarPassword()">Entrar ❤</button>
+      <div class="password-error" id="passwordError"></div>
     </div>
+  </section>
 
-    <h1 class="title">Para mi solecito</h1>
-    <p class="subtitle"></p>
-
-    <!-- Cambia la imagen -->
-    <div class="photo">
-      <img src="nosotros.JPG" alt="Foto especial">
+  <!-- ANIMACIÓN DEL SOBRE -->
+  <section class="envelope-screen hidden" id="envelopeScreen">
+    <div class="envelope-box">
+      <div class="envelope" id="envelope" onclick="abrirCarta()">
+        <div class="envelope-letter">❤</div>
+        <div class="envelope-base"></div>
+        <div class="envelope-flap"></div>
+      </div>
+      <p class="envelope-text">Toca el sobre para abrir la carta</p>
     </div>
+  </section>
 
-    <div class="letter">
-      <p>
-         <span class="highlight">Mi princesa, mi niña de ojos color Sol.</span>
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="app hidden" id="app">
+    <button class="music-toggle" id="musicBtn" onclick="toggleMusica()">♫ Música</button>
 
-        Hola mi amor, hoy en el día día que cumplimos nuestros tercer mes oficial siendo tu y yo mi niña queria darte algo especial, pero sin pasar por alto o dejar un lo siento desde el fondo de mi corazón por fallar. 
-        
-        Se que no te gusta que pida perdón y menos tan repetitivamente, pero hay puntos donde es necesario. Mas que solo pedir perdón o dar palabras vacias, si no con acciones en las que deposito mi amor infinito que te tengo todos los días de mi vida. 
+    <!-- Notitas escondidas por toda la pantalla -->
+    <button class="secret-note" style="top: 9%; left: 7%;" data-note="Notita 1: Amo tus ojos, amo tu carita, te amo a ti.">❤</button>
+    <button class="secret-note" style="top: 18%; right: 8%;" data-note="Notita 2: Si encontraste esto, me debes un millón de besos.">❤</button>
+    <button class="secret-note" style="top: 52%; left: 5%;" data-note="Notita 3: Gracias por elegirme incluso en los días difíciles.">❤</button>
+    <button class="secret-note" style="bottom: 14%; right: 9%;" data-note="Notita 4: Eres mi lugar bonito, mi calma y mi solecito.">❤</button>
+    <button class="secret-note" style="bottom: 7%; left: 45%;" data-note="Notita 5: Espero verte pronto y estar como una familia con el Papi.">❤</button>
 
-        Hoy en nuestro día especial queria decirte que agradezco a Dios por permitirme tener a una chica tan increible junto a mi, tan linda e inteligente, que me inspira y me empuja todos los días de mi vida aunque sean suaves o pesados a seguir adelante y 
-        mejorar.
+    <div class="card">
+      <div class="hearts">
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+      </div>
 
-        Se que no han sido los mejores días amor de mi vida, pero ni un día dudo de que eres y serás tu la mujer que quiero a mi lado, a la cual quiero ver crecer y a la cual quiero apoyar incondicionalmente.
+      <h1 class="title">Para mi solecito</h1>
+      <p class="subtitle">Siempre pienso en ti.</p>
 
-        Cada regalito va con intención y amor, espero te guste mi princesa,
+      <div class="photo">
+        <img src="image.png" alt="Foto especial">
+      </div>
 
-        Gracias, por estar a mi lado, gracias por aguantar mi forma de ser y gracias por elegirme tambien,
+      <div class="letter">
+        <p>
+          <span class="highlight">Mi princesa, mi niña de ojos color Sol.</span>
+          Como te prometí, siempre estaré para ti y siempre intentaré hacer de tu vida algo especial.
 
-        Te amo y más mi niña, aunque a veces sea muy frio, eres mi solecito del corazón,
+          Sé que a veces no soy la persona más paciente, ni siempre tengo el mejor humor, pero también sé que tú siempre estás ahí, mi vida. Y hoy, en nuestro cuarto mes ya oficial, solo quiero decirte gracias.
 
-        Siempre estare aunque este lejos para apoyarte, por que eres el amor de mi vida
+          Gracias por estar, gracias por abrirte, por escucharme y por seguir aquí, incluso cuando sé que, con todo lo que pasa, no siempre es fácil.
 
-        Con todo mi amor
-    </p>
+          Te amo infinito. Y el día que sientas que no se nota, dímelo, porque siempre estaré dispuesto a hacer todo lo posible para que estés feliz, tranquila y orgullosa del hombre que quiere permanecer a tu lado, amarte, cuidarte y, si Dios lo permite, algún día ser tu esposo.
+
+          Quiero seguir viendo esos ojitos brillar, incluso más de lo que ya lo hacen.
+
+          Feliz mes, mi amor. Ojalá sean infinitos más.
+        </p>
+      </div>
+
+      <div class="signature">
+        <p>con todo el amor y adoración,</p>
+        <div class="name">Dario</div>
+      </div>
+
+      <!-- CARRUSEL -->
+      <section class="carousel-section">
+        <h2 class="carousel-title">Nuestros recuerditos</h2>
+
+        <div class="carousel">
+          <button class="carousel-btn" onclick="cambiarFoto(-1)">‹</button>
+
+          <div class="carousel-frame">
+            <img id="carouselImage" src="primera.jpeg" alt="Recuerdo especial">
+          </div>
+
+          <button class="carousel-btn" onclick="cambiarFoto(1)">›</button>
+        </div>
+
+        <p class="carousel-caption" id="carouselCaption">Ese primer instante.</p>
+      </section>
+
+      <div class="btn-box">
+        <button class="love-btn" onclick="mostrarMensaje()">Haz clic aquí ❤</button>
+        <button class="love-btn" onclick="crearLluviaCorazones()">Sorpresa de corazones</button>
+      </div>
+
+      <div class="message-box" id="mensaje"></div>
     </div>
+  </main>
 
-    <div class="signature">
-      <p>Siempre para ti,</p>
-      <div class="name">Dario</div>
+  <!-- MODAL DE NOTITAS -->
+  <div class="note-modal hidden" id="noteModal">
+    <div class="note-content">
+      <button class="close-note" onclick="cerrarNota()">×</button>
+      <h3>Encontraste una notita</h3>
+      <p id="noteText"></p>
     </div>
-
-    <div class="btn-box">
-      <button class="love-btn" onclick="mostrarMensaje()">Haz clic aquí ❤</button>
-    </div>
-
-    <div class="message-box" id="mensaje"></div>
   </div>
 
+  <div class="heart-rain" id="heartRain"></div>
+
   <script>
+    /*
+      CAMBIA AQUÍ LA CONTRASEÑA.
+      Ojo: esta contraseña no es de seguridad real; como es una página estática,
+      alguien técnico podría verla en el código. Sirve para la sorpresa romántica.
+    */
+    const PASSWORD = "solecito";
+
+    /*
+      CARRUSEL:
+      Para agregar más fotos:
+      1. Sube la foto al repo, por ejemplo foto3.jpg
+      2. Agrega una línea aquí:
+         { src: "foto3.jpg", texto: "Texto bonito de esa foto." },
+    */
+    const fotos = [
+      { src: "primera.jpeg", texto: "Ese primer instante." },
+      { src: "3.jpeg", texto: "Un recuerdo que siempre me hace sonreír." },
+      { src: "1.jpeg", texto: "La noche perfecta." },
+      { src: "4.jpeg", texto: "I miss you ." }
+    ];
+
+    let fotoActual = 0;
+    let musicaActiva = false;
+    let clicksMensaje = 0;
+
+    const audio = document.getElementById("musicaFondo");
+    audio.volume = 0.35;
+
+    function validarPassword() {
+      const input = document.getElementById("passwordInput");
+      const error = document.getElementById("passwordError");
+      const valor = input.value.trim().toLowerCase();
+
+      if (valor === PASSWORD.toLowerCase()) {
+        error.textContent = "";
+        document.getElementById("passwordScreen").classList.add("hidden");
+        document.getElementById("envelopeScreen").classList.remove("hidden");
+        intentarReproducirMusica();
+      } else {
+        error.textContent = "Ups, esa no es. Pista: algo que me recuerda a ti.";
+        input.value = "";
+        input.focus();
+      }
+    }
+
+    function abrirCarta() {
+      const envelope = document.getElementById("envelope");
+      envelope.classList.add("open");
+
+      setTimeout(() => {
+        document.getElementById("envelopeScreen").classList.add("hidden");
+        document.getElementById("app").classList.remove("hidden");
+        crearLluviaCorazones();
+      }, 950);
+    }
+
+    function intentarReproducirMusica() {
+      audio.play()
+        .then(() => {
+          musicaActiva = true;
+          actualizarBotonMusica();
+        })
+        .catch(() => {
+          musicaActiva = false;
+          actualizarBotonMusica();
+        });
+    }
+
+    function toggleMusica() {
+      if (musicaActiva) {
+        audio.pause();
+        musicaActiva = false;
+      } else {
+        audio.play();
+        musicaActiva = true;
+      }
+
+      actualizarBotonMusica();
+    }
+
+    function actualizarBotonMusica() {
+      const btn = document.getElementById("musicBtn");
+
+      if (!btn) return;
+
+      btn.textContent = musicaActiva ? "♫ Pausar música" : "♫ Reproducir música";
+    }
+
+    function cambiarFoto(direccion) {
+      fotoActual += direccion;
+
+      if (fotoActual < 0) {
+        fotoActual = fotos.length - 1;
+      }
+
+      if (fotoActual >= fotos.length) {
+        fotoActual = 0;
+      }
+
+      const img = document.getElementById("carouselImage");
+      const caption = document.getElementById("carouselCaption");
+
+      img.src = fotos[fotoActual].src;
+      img.alt = fotos[fotoActual].texto;
+      caption.textContent = fotos[fotoActual].texto;
+
+      img.style.animation = "none";
+      void img.offsetWidth;
+      img.style.animation = "softZoom 0.45s ease";
+    }
+
     function mostrarMensaje() {
       const mensajes = [
-        "Te amo y más",
-        "Si vez esto, me debes mil besitos.",
+        "Te amo y más.",
+        "Si ves esto, me debes mil besitos.",
         "Amo tus ojitos.",
-        "Eres tú mi princesa"
+        "Eres tú mi princesa.",
+        "Gracias por quedarte conmigo.",
+        "Eres mi lugar seguro.",
+        "Nunca olvides lo mucho que vales para mí."
       ];
 
       const aleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
       document.getElementById("mensaje").textContent = aleatorio;
-    }
-  </script>
 
+      clicksMensaje++;
+
+      if (clicksMensaje === 5) {
+        document.getElementById("mensaje").textContent = "Sorpresa escondida: ya hiciste 5 clics, eso significa 5 abrazos para mí ❤";
+        crearLluviaCorazones();
+      }
+    }
+
+    function crearLluviaCorazones() {
+      const contenedor = document.getElementById("heartRain");
+      const cantidad = 34;
+
+      for (let i = 0; i < cantidad; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("falling-heart");
+        heart.textContent = ["❤", "💕", "💗", "💖"][Math.floor(Math.random() * 4)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 0.7 + "s";
+        heart.style.fontSize = (18 + Math.random() * 18) + "px";
+        contenedor.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 4200);
+      }
+    }
+
+    document.querySelectorAll(".secret-note").forEach((note) => {
+      note.addEventListener("click", () => {
+        document.getElementById("noteText").textContent = note.dataset.note;
+        document.getElementById("noteModal").classList.remove("hidden");
+        crearLluviaCorazones();
+      });
+    });
+
+    function cerrarNota() {
+      document.getElementById("noteModal").classList.add("hidden");
+    }
+
+    document.getElementById("noteModal").addEventListener("click", (event) => {
+      if (event.target.id === "noteModal") {
+        cerrarNota();
+      }
+    });
+
+    document.getElementById("passwordInput").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        validarPassword();
+      }
+    });
+  </script>
 </body>
 </html>
