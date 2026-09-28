@@ -1,1027 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Ti</title>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10162f">
+  <title>Felices 9 meses, mi amor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --rosa: #f49ab8;
-      --rosa-oscuro: #e8759e;
-      --rosa-claro: #ffd6e5;
-      --rosa-muy-claro: #fff2f7;
-
-      --durazno: #ffd7c2;
-      --verde-suave: #dff3c6;
-      --verde-brillo: #c9efa4;
-      --azul-suave: #d8ecff;
-
-      --texto: #5b3b49;
-      --texto-suave: #8b5d6d;
-
-      --suave: rgba(255, 244, 249, 0.86);
-      --borde-suave: rgba(255, 214, 229, 0.75);
-      --sombra-rosa: rgba(244, 154, 184, 0.35);
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: url("us.jpg") center/cover no-repeat fixed;
-      overflow-x: hidden;
-      color: var(--texto);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(255, 214, 229, 0.52), transparent 38%),
-        radial-gradient(circle at 82% 14%, rgba(223, 243, 198, 0.30), transparent 32%),
-        radial-gradient(circle at 65% 85%, rgba(216, 236, 255, 0.24), transparent 38%),
-        linear-gradient(135deg, rgba(255, 242, 247, 0.55), rgba(255, 215, 194, 0.22));
-      z-index: -1;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* ==============================
-       PANTALLA DE CONTRASEÑA
-    ============================== */
-
-    .password-screen,
-    .envelope-screen {
-      min-height: 100vh;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .password-card {
-      width: min(100%, 430px);
-      background: rgba(255, 244, 249, 0.9);
-      backdrop-filter: blur(14px);
-      border-radius: 30px;
-      padding: 34px 26px;
-      text-align: center;
-      box-shadow: 0 18px 45px rgba(91, 59, 73, 0.18);
-      border: 1px solid var(--borde-suave);
-      animation: fadeUp 0.9s ease;
-    }
-
-    .password-card h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.4rem;
-      color: var(--rosa-oscuro);
-      margin-bottom: 8px;
-      text-shadow: 0 4px 12px rgba(244, 154, 184, 0.28);
-    }
-
-    .password-card p {
-      color: var(--texto-suave);
-      font-size: 0.98rem;
-      margin-bottom: 18px;
-    }
-
-    .password-card input {
-      width: 100%;
-      border: 1px solid rgba(244, 154, 184, 0.45);
-      outline: none;
-      padding: 14px 16px;
-      border-radius: 999px;
-      text-align: center;
-      font-size: 1rem;
-      color: var(--texto);
-      background: rgba(255, 255, 255, 0.88);
-      margin-bottom: 14px;
-      box-shadow: inset 0 2px 8px rgba(244, 154, 184, 0.08);
-    }
-
-    .password-card input:focus {
-      border-color: var(--rosa);
-      box-shadow: 0 0 0 4px rgba(244, 154, 184, 0.18);
-    }
-
-    .password-error {
-      min-height: 22px;
-      color: var(--rosa-oscuro);
-      font-size: 0.9rem;
-      margin-top: 12px;
-    }
-
-    /* ==============================
-       BOTONES
-    ============================== */
-
-    .love-btn,
-    .music-toggle,
-    .carousel-btn,
-    .close-note {
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .love-btn {
-      background: linear-gradient(135deg, #f8a8c3, #e8759e);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-size: 1rem;
-      box-shadow: 0 8px 20px var(--sombra-rosa);
-    }
-
-    .love-btn:hover,
-    .music-toggle:hover,
-    .carousel-btn:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, #f5b1ca, #df6f98);
-      box-shadow: 0 10px 24px rgba(232, 117, 158, 0.38);
-    }
-
-    .music-toggle {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      z-index: 20;
-      background: linear-gradient(135deg, rgba(248, 168, 195, 0.96), rgba(232, 117, 158, 0.96));
-      color: white;
-      padding: 11px 16px;
-      border-radius: 999px;
-      box-shadow: 0 8px 22px rgba(91, 59, 73, 0.18);
-      font-size: 0.9rem;
-    }
-
-    /* ==============================
-       SOBRE / ANIMACIÓN DE CARTA
-    ============================== */
-
-    .envelope-box {
-      text-align: center;
-      animation: fadeUp 0.9s ease;
-    }
-
-    .envelope {
-      width: 290px;
-      height: 190px;
-      position: relative;
-      cursor: pointer;
-      margin: 0 auto 28px;
-      filter: drop-shadow(0 18px 28px rgba(91, 59, 73, 0.22));
-    }
-
-    .envelope-base {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #ffd6e5, #f49ab8);
-      border-radius: 18px;
-      overflow: hidden;
-    }
-
-    .envelope-base::before,
-    .envelope-base::after {
-      content: "";
-      position: absolute;
-      width: 210px;
-      height: 210px;
-      background: rgba(255, 255, 255, 0.35);
-      transform: rotate(45deg);
-      bottom: -120px;
-    }
-
-    .envelope-base::before {
-      left: -70px;
-    }
-
-    .envelope-base::after {
-      right: -70px;
-    }
-
-    .envelope-flap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      margin: auto;
-      width: 0;
-      height: 0;
-      border-left: 145px solid transparent;
-      border-right: 145px solid transparent;
-      border-top: 100px solid #f8a8c3;
-      transform-origin: top;
-      transition: transform 0.8s ease;
-      z-index: 3;
-    }
-
-    .envelope-letter {
-      position: absolute;
-      left: 35px;
-      right: 35px;
-      bottom: 20px;
-      height: 125px;
-      background: rgba(255, 252, 254, 0.96);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem;
-      color: var(--rosa-oscuro);
-      transition: transform 0.8s ease;
-      z-index: 2;
-    }
-
-    .envelope.open .envelope-flap {
-      transform: rotateX(180deg);
-    }
-
-    .envelope.open .envelope-letter {
-      transform: translateY(-88px);
-    }
-
-    .envelope-text {
-      color: var(--texto-suave);
-      background: rgba(255, 244, 249, 0.82);
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--borde-suave);
-    }
-
-    /* ==============================
-       CONTENIDO PRINCIPAL
-    ============================== */
-
-    .app {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 34px 24px;
-      position: relative;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 850px;
-      background: var(--suave);
-      backdrop-filter: blur(12px);
-      border-radius: 28px;
-      box-shadow: 0 14px 40px rgba(91, 59, 73, 0.16);
-      padding: 40px 30px;
-      position: relative;
-      border: 1px solid var(--borde-suave);
-      overflow: hidden;
-      animation: openLetter 0.9s ease both;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(255, 214, 229, 0.45), transparent 35%),
-        radial-gradient(circle at 92% 22%, rgba(223, 243, 198, 0.28), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(255, 215, 194, 0.26), transparent 38%);
-      z-index: 0;
-    }
-
-    .hearts {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      border-radius: 24px;
-      z-index: 0;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 20px;
-      opacity: 0.22;
-      color: #f49ab8;
-      animation: float 8s linear infinite;
-    }
-
-    .heart:nth-child(1) { left: 8%; top: 85%; animation-delay: 0s; }
-    .heart:nth-child(2) { left: 20%; top: 95%; animation-delay: 1.2s; }
-    .heart:nth-child(3) { left: 38%; top: 90%; animation-delay: 2.5s; }
-    .heart:nth-child(4) { left: 55%; top: 88%; animation-delay: 0.8s; }
-    .heart:nth-child(5) { left: 72%; top: 92%; animation-delay: 3.5s; }
-    .heart:nth-child(6) { left: 88%; top: 94%; animation-delay: 1.8s; }
-
-    .title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
-      text-align: center;
-      color: var(--rosa-oscuro);
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 4px 14px rgba(244, 154, 184, 0.28);
-    }
-
-    .subtitle {
-      text-align: center;
-      color: var(--texto-suave);
-      font-size: 1rem;
-      margin-bottom: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .photo {
-      width: min(100%, 340px);
-      height: clamp(310px, 52vh, 460px);
-      margin: 0 auto 25px;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 5px solid rgba(255, 242, 247, 0.95);
-      box-shadow: 0 10px 24px rgba(244, 154, 184, 0.30);
-      position: relative;
-      z-index: 1;
-      background:
-        radial-gradient(circle at 22% 16%, rgba(255, 214, 229, 0.55), transparent 38%),
-        radial-gradient(circle at 82% 84%, rgba(223, 243, 198, 0.34), transparent 38%),
-        linear-gradient(135deg, rgba(255, 242, 247, 0.82), rgba(255, 215, 194, 0.38));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-    }
-
-    .letter {
-      color: var(--texto);
-      font-size: 1rem;
-      line-height: 1.9;
-      text-align: justify;
-      white-space: pre-line;
-      position: relative;
-      z-index: 1;
-    }
-
-    .highlight {
-      color: var(--rosa-oscuro);
-      font-weight: 600;
-      display: block;
-      text-align: center;
-      font-size: 2rem;
-      font-family: 'Great Vibes', cursive;
-    }
-
-    .signature {
-      margin-top: 30px;
-      text-align: right;
-      color: var(--texto-suave);
-      position: relative;
-      z-index: 1;
-    }
-
-    .signature .name {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      color: var(--rosa-oscuro);
-    }
-
-    .btn-box {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .message-box {
-      margin-top: 20px;
-      text-align: center;
-      color: var(--texto-suave);
-      font-size: 0.98rem;
-      min-height: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ==============================
-       CARRUSEL
-    ============================== */
-
-    .carousel-section {
-      margin-top: 38px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(244, 154, 184, 0.32);
-      position: relative;
-      z-index: 1;
-    }
-
-    .carousel-title {
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      color: var(--rosa-oscuro);
-      font-size: 2.6rem;
-      margin-bottom: 16px;
-      text-shadow: 0 4px 12px rgba(244, 154, 184, 0.22);
-    }
-
-    .carousel {
-      display: grid;
-      grid-template-columns: 48px 1fr 48px;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .carousel-frame {
-      width: 100%;
-      max-width: min(74vw, 430px);
-      height: clamp(430px, 72vh, 680px);
-      margin: 0 auto;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 5px solid rgba(255, 242, 247, 0.96);
-      box-shadow: 0 12px 28px rgba(244, 154, 184, 0.32);
-      background:
-        radial-gradient(circle at 25% 18%, rgba(255, 214, 229, 0.55), transparent 38%),
-        radial-gradient(circle at 80% 78%, rgba(223, 243, 198, 0.34), transparent 38%),
-        radial-gradient(circle at 52% 46%, rgba(216, 236, 255, 0.22), transparent 42%),
-        linear-gradient(135deg, rgba(255, 242, 247, 0.92), rgba(255, 215, 194, 0.42));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .carousel-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      animation: softZoom 0.45s ease;
-    }
-
-    .carousel-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f8a8c3, #e8759e);
-      color: white;
-      font-size: 1.8rem;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 8px 20px rgba(244, 154, 184, 0.30);
-    }
-
-    .carousel-caption {
-      text-align: center;
-      margin-top: 12px;
-      color: var(--texto-suave);
-      font-size: 0.96rem;
-    }
-
-    /* ==============================
-       NOTITAS ESCONDIDAS
-    ============================== */
-
-    .secret-note {
-      position: fixed;
-      z-index: 15;
-      width: 34px;
-      height: 34px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255, 214, 229, 0.72);
-      backdrop-filter: blur(8px);
-      color: #e8759e;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(244, 154, 184, 0.28);
-      opacity: 0.55;
-      animation: pulseSecret 2.4s ease-in-out infinite;
-    }
-
-    .secret-note:hover {
-      opacity: 1;
-      transform: scale(1.16);
-      background: rgba(255, 242, 247, 0.92);
-    }
-
-    .note-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: rgba(91, 59, 73, 0.42);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .note-content {
-      width: min(100%, 420px);
-      background: rgba(255, 244, 249, 0.95);
-      border-radius: 28px;
-      padding: 30px 24px;
-      text-align: center;
-      color: var(--texto);
-      position: relative;
-      box-shadow: 0 18px 45px rgba(91, 59, 73, 0.22);
-      border: 1px solid var(--borde-suave);
-      animation: notePop 0.35s ease;
-    }
-
-    .note-content h3 {
-      font-family: 'Great Vibes', cursive;
-      color: var(--rosa-oscuro);
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-    }
-
-    .note-content p {
-      line-height: 1.7;
-      color: var(--texto-suave);
-    }
-
-    .close-note {
-      position: absolute;
-      right: 14px;
-      top: 12px;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: #ffd6e5;
-      color: var(--rosa-oscuro);
-      font-size: 1.1rem;
-    }
-
-    .heart-rain {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 60;
-    }
-
-    .falling-heart {
-      position: absolute;
-      top: -40px;
-      font-size: 24px;
-      animation: fallHeart 3.2s linear forwards;
-    }
-
-    /* ==============================
-       ANIMACIONES
-    ============================== */
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes openLetter {
-      from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.96) rotateX(10deg);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0);
-      }
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.22;
-      }
-      100% {
-        transform: translateY(-700px) scale(1.4);
-        opacity: 0;
-      }
-    }
-
-    @keyframes softZoom {
-      from {
-        opacity: 0.45;
-        transform: scale(1.03);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes pulseSecret {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.12);
-      }
-    }
-
-    @keyframes notePop {
-      from {
-        opacity: 0;
-        transform: scale(0.88);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fallHeart {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .app {
-        padding: 22px 14px;
-      }
-
-      .card {
-        padding: 28px 20px;
-      }
-
-      .title {
-        font-size: 3rem;
-      }
-
-      .letter {
-        font-size: 0.96rem;
-      }
-
-      .photo {
-        width: min(100%, 310px);
-        height: clamp(300px, 50vh, 430px);
-      }
-
-      .carousel {
-        grid-template-columns: 40px 1fr 40px;
-        gap: 6px;
-      }
-
-      .carousel-frame {
-        max-width: 100%;
-        height: clamp(410px, 70vh, 620px);
-        border-radius: 20px;
-      }
-
-      .carousel-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 1.45rem;
-      }
-
-      .music-toggle {
-        top: auto;
-        bottom: 16px;
-        right: 16px;
-      }
-
-      .secret-note {
-        width: 30px;
-        height: 30px;
-      }
-    }
+    :root{--night:#10162f;--night2:#202143;--plum:#492b56;--gold:#f4d58a;--gold2:#dcae61;--cream:#fff6e7;--pink:#efb8cd;--green:#8cae78;--ink:#392b3a}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;background:var(--night);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    button,a{font:inherit}
+    .sky{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 50% 78%,rgba(131,82,117,.34),transparent 42%),radial-gradient(ellipse at 12% 70%,rgba(78,131,91,.32),transparent 30%),radial-gradient(ellipse at 85% 20%,rgba(91,104,174,.28),transparent 35%),linear-gradient(160deg,#0c122a,#171832 52%,#2d1d3c)}
+    .sky:before,.sky:after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 18%,#fff 99%,transparent),radial-gradient(2px 2px at 23% 35%,#f4d58a 99%,transparent),radial-gradient(1px 1px at 67% 18%,#fff 99%,transparent),radial-gradient(1px 1px at 88% 42%,#fff 99%,transparent),radial-gradient(2px 2px at 54% 10%,#f4d58a 99%,transparent),radial-gradient(1px 1px at 38% 64%,#fff 99%,transparent);background-size:410px 310px;opacity:.68;animation:twinkle 7s ease-in-out infinite alternate}
+    .sky:after{background-position:170px 90px;opacity:.3;animation-delay:-3s}
+    .mist{position:absolute;bottom:-15vh;left:-10%;width:120%;height:48vh;background:radial-gradient(ellipse,rgba(148,100,147,.24),transparent 68%);filter:blur(28px)}
+    .lantern{position:absolute;width:34px;height:48px;border-radius:48% 48% 42% 42%;background:linear-gradient(90deg,rgba(255,167,74,.2),rgba(255,221,144,.82),rgba(255,167,74,.2));box-shadow:0 0 32px 8px rgba(255,192,104,.3);opacity:.72;animation:float 10s ease-in-out infinite}
+    .lantern:after{content:"";position:absolute;left:50%;top:13px;width:4px;height:21px;transform:translateX(-50%);background:#fff3c9;border-radius:50%;filter:blur(4px)}
+    .lantern.one{left:11%;top:18%;animation-delay:-2s}.lantern.two{right:15%;top:28%;transform:scale(.72);animation-delay:-6s}.lantern.three{left:72%;top:12%;transform:scale(.55);animation-delay:-4s}
+    .comet{position:absolute;right:17%;top:12%;width:150px;height:2px;transform:rotate(-28deg);background:linear-gradient(90deg,transparent,#fff3b0,transparent);filter:drop-shadow(0 0 6px #ffe9a8);opacity:.68;animation:comet 9s ease-in-out infinite}
+    .rose-glass{position:absolute;right:8%;top:43px;width:64px;height:108px;border:1px solid rgba(255,235,182,.34);border-radius:46% 46% 8px 8px;display:grid;place-items:center;color:#ef879d;font-size:34px;text-shadow:0 0 18px #f2b4ae;box-shadow:inset 0 0 22px rgba(255,238,192,.08),0 0 24px rgba(255,229,169,.1);opacity:.72}
+    .rose-glass:after{content:"";position:absolute;bottom:-7px;width:70px;height:9px;border-radius:50%;background:rgba(248,221,159,.4);filter:blur(1px)}
+    .topbar{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:min(1180px,92%);display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:3}
+    .brand{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,246,231,.72)}
+    .music-button,.scroll-button{border:1px solid rgba(244,213,138,.54);border-radius:999px;padding:11px 18px;color:var(--cream);background:rgba(15,20,45,.48);backdrop-filter:blur(10px);cursor:pointer;transition:.25s}
+    .music-button:hover,.scroll-button:hover{background:rgba(244,213,138,.18);transform:translateY(-2px);box-shadow:0 8px 28px rgba(244,213,138,.12)}
+    .scene{min-height:100svh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:100px 20px 0;isolation:isolate}
+    .scene-heading{position:relative;z-index:2;animation:rise 1s both}
+    .eyebrow{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+    h1{font:clamp(3.2rem,8vw,6.6rem)/.95 'Great Vibes',cursive;color:#fff0c5;text-shadow:0 4px 28px rgba(255,209,132,.24);margin:0}
+    .scene-subtitle{font:500 clamp(.9rem,2vw,1.08rem) 'Playfair Display',serif;color:rgba(255,246,231,.79);margin:16px 0 0}
+    .red-thread{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.65}
+    .thread-path{fill:none;stroke:#e97987;stroke-width:2;stroke-dasharray:9 10;filter:drop-shadow(0 0 6px rgba(255,116,144,.7));animation:thread 18s linear infinite}
+    .dance-floor{position:relative;width:min(520px,90vw);height:min(46vh,390px);min-height:290px;margin-top:28px;display:grid;place-items:center;perspective:800px;z-index:1}
+    .floor-disc{position:absolute;inset:5% 2% 0;border-radius:50%;transform:rotateX(62deg);transform-origin:center 70%;background:radial-gradient(ellipse at center,rgba(248,221,160,.23),rgba(98,76,123,.25) 48%,rgba(16,22,47,.38) 70%),repeating-linear-gradient(0deg,transparent 0 37px,rgba(255,225,160,.17) 38px 39px),repeating-linear-gradient(90deg,transparent 0 37px,rgba(255,225,160,.14) 38px 39px);border:1px solid rgba(248,221,160,.28);box-shadow:0 0 45px rgba(236,183,123,.18),inset 0 0 34px rgba(255,226,169,.18);overflow:hidden}
+    .floor-disc:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 8%,rgba(255,242,208,.92) 19%,rgba(255,242,208,.1) 32%,transparent 48%);transform:translateX(-130%);animation:sweep 5.7s .7s ease-in-out forwards;filter:blur(3px)}
+    .floor-disc:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse,transparent 32%,rgba(19,19,42,.82) 75%);opacity:.8;transition:opacity 2s ease}
+    .floor-disc.cleaned:after{opacity:.12}
+    .floor-label{position:absolute;bottom:1%;z-index:2;color:rgba(255,240,197,.74);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase}
+    .dancers{position:relative;width:240px;height:250px;z-index:2;filter:drop-shadow(0 10px 24px rgba(255,211,141,.25));animation:coupleSway 2.3s ease-in-out infinite}
+    .dancers svg{width:100%;height:100%;overflow:visible}
+    .girl{transform-origin:92px 153px;animation:danceGirl 2.3s ease-in-out infinite}
+    .boy{transform-origin:160px 148px;animation:danceBoy 2.3s ease-in-out infinite}
+    .dancer-glow{fill:#fff0c2;stroke:#f3d48f;stroke-width:2}
+    .spark{position:absolute;color:#ffe9a8;text-shadow:0 0 15px #f8cc72;animation:sparkle 2s infinite}
+    .spark.a{top:21%;left:18%;font-size:17px}.spark.b{right:16%;top:34%;animation-delay:-1s}.spark.c{bottom:24%;right:21%;font-size:13px;animation-delay:-.4s}
+    .scene-footer{position:absolute;bottom:25px;left:0;right:0;z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .scene-footer span{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,246,231,.58)}
+    .scroll-button{padding:10px 20px}
+    .content{position:relative;padding:55px 22px 90px;background:linear-gradient(180deg,rgba(17,19,43,.2),rgba(21,18,39,.92) 11%,rgba(31,22,43,.96));}
+    .chapter{text-align:center;margin:0 auto 36px;max-width:730px}
+    .chapter .eyebrow{margin-bottom:5px}
+    .chapter h2{font:clamp(2.5rem,6vw,4.4rem)/1 'Great Vibes',cursive;color:var(--gold);margin:0 0 10px}
+    .chapter p{color:rgba(255,246,231,.65);margin:0}
+    .memory-layout{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:minmax(170px,1fr) minmax(340px,1.45fr) minmax(170px,1fr);gap:24px;align-items:center}
+    .photo-column{display:grid;gap:22px}
+    .photo-card{position:relative;padding:10px 10px 35px;background:linear-gradient(145deg,#fffaf0,#f4e4c7);border-radius:4px;color:#534452;box-shadow:0 14px 36px rgba(0,0,0,.28);transform:rotate(var(--tilt,-3deg));transition:transform .4s,box-shadow .4s}
+    .photo-card:hover{transform:rotate(0) translateY(-5px) scale(1.025);box-shadow:0 20px 46px rgba(0,0,0,.38);z-index:2}
+    .photo-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd;border:1px solid rgba(71,51,61,.1)}
+    .photo-card.landscape img{aspect-ratio:4/3}
+    .photo-card figcaption{position:absolute;bottom:9px;left:8px;right:8px;text-align:center;font:1.25rem 'Great Vibes',cursive;color:#6b5260}
+    .letter-card{position:relative;padding:clamp(26px,5vw,54px);background:linear-gradient(150deg,rgba(255,249,234,.97),rgba(242,224,196,.96));color:var(--ink);border:1px solid rgba(255,235,185,.7);border-radius:3px;box-shadow:0 25px 85px rgba(0,0,0,.35);opacity:0;filter:blur(8px);transform:translateY(22px);animation:reveal 1.5s 3.3s ease forwards}
+    .letter-card:before,.letter-card:after{content:"";position:absolute;width:54px;height:54px;border:1px solid rgba(182,135,76,.43)}
+    .letter-card:before{top:11px;left:11px;border-right:0;border-bottom:0}.letter-card:after{right:11px;bottom:11px;border-left:0;border-top:0}
+    .letter-kicker{text-align:center;text-transform:uppercase;letter-spacing:.22em;font-size:.68rem;color:#9b7654;margin:0 0 13px}
+    .letter-card h3{text-align:center;font:clamp(2.3rem,5vw,3.5rem)/1.05 'Great Vibes',cursive;color:#7e4c64;margin:0 0 24px}
+    .letter-text{font:clamp(.97rem,1.25vw,1.08rem)/1.95 'Playfair Display',serif;white-space:pre-line;text-align:left;margin:0}
+    .signature{text-align:right;font:2.1rem 'Great Vibes',cursive;color:#a56b78;margin:23px 0 0}
+    .photo-row{max-width:960px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+    .photo-row .photo-card:nth-child(2){--tilt:2deg;margin-top:32px}.photo-row .photo-card:nth-child(3){--tilt:-1deg;margin-top:8px}
+    .motifs{max-width:1020px;margin:70px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center}
+    .motif{padding:18px 12px;border-top:1px solid rgba(244,213,138,.35);color:rgba(255,246,231,.72);font:1.1rem 'Playfair Display',serif}
+    .motif b{display:block;font:1.9rem 'Great Vibes',cursive;color:var(--gold);margin-bottom:5px}
+    .closing{text-align:center;margin:58px auto 0;color:rgba(255,246,231,.72);font:1.15rem 'Playfair Display',serif}
+    .closing strong{display:block;font:3rem 'Great Vibes',cursive;color:var(--pink);margin-top:5px}
+    .footer{text-align:center;padding:0 20px 35px;color:rgba(255,246,231,.38);font-size:.75rem;letter-spacing:.12em}
+    .music-note{position:fixed;inset:0;z-index:10;background:rgba(7,10,26,.72);backdrop-filter:blur(12px);display:none;place-items:center;padding:22px}
+    .music-note.open{display:grid}
+    .music-card{width:min(100%,460px);padding:30px;border:1px solid rgba(244,213,138,.4);border-radius:22px;background:linear-gradient(145deg,#27233f,#111831);box-shadow:0 24px 80px rgba(0,0,0,.4);text-align:center}
+    .music-card h3{font:2.5rem 'Great Vibes',cursive;color:var(--gold);margin:0 0 8px}.music-card p{line-height:1.7;color:rgba(255,246,231,.75)}
+    .music-status{font-size:.83rem;color:#f2d99d;min-height:20px;margin-top:12px}
+    .modal-close{margin-top:8px;border:0;background:none;color:var(--pink);cursor:pointer;padding:10px}
+    .sparkle-field{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+    .floating-spark{position:absolute;top:-30px;color:#ffe6a3;animation:fall linear forwards;text-shadow:0 0 13px #e6bb75}
+    @keyframes twinkle{to{opacity:.28;transform:scale(1.02)}}
+    @keyframes float{0%,100%{translate:0 0}50%{translate:12px -32px}}
+    @keyframes comet{0%,20%{translate:180px -120px;opacity:0}35%{opacity:.75}50%,100%{translate:-180px 120px;opacity:0}}
+    @keyframes thread{to{stroke-dashoffset:-380}}
+    @keyframes sweep{0%{transform:translateX(-130%)}58%{transform:translateX(110%)}100%{transform:translateX(110%)}}
+    @keyframes coupleSway{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+    @keyframes danceGirl{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(7deg)}}
+    @keyframes danceBoy{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-7deg)}}
+    @keyframes sparkle{0%,100%{opacity:.38;transform:scale(.75)}50%{opacity:1;transform:scale(1.2)}}
+    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes reveal{to{opacity:1;filter:blur(0);transform:translateY(0)}}
+    @keyframes fall{to{transform:translateY(110vh) rotate(320deg);opacity:0}}
+    @media(max-width:850px){.rose-glass{right:5%;top:86px;transform:scale(.72)}.memory-layout{grid-template-columns:1fr;max-width:680px}.photo-column{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}.photo-column.left{order:2}.letter-card{order:1}.photo-column.right{order:3}.photo-column .photo-card:nth-child(2){--tilt:2deg}.photo-row{margin-top:22px}.motifs{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.topbar{top:14px;width:92%}.brand{font-size:.6rem;letter-spacing:.15em}.music-button{padding:9px 13px;font-size:.83rem}.scene{padding-top:110px}.scene-heading{max-width:90%}.scene-subtitle{max-width:290px;margin-left:auto;margin-right:auto}.dance-floor{height:38vh;min-height:265px;margin-top:28px}.dancers{width:210px;height:220px}.floor-label{font-size:.58rem}.scene-footer{bottom:20px}.content{padding:52px 15px 65px}.photo-column{gap:13px}.photo-card{padding:7px 7px 29px}.photo-card figcaption{font-size:1rem;bottom:7px}.photo-row{gap:12px}.photo-row .photo-card:nth-child(2){margin-top:17px}.photo-row .photo-card:nth-child(3){margin-top:4px}.letter-card{padding:31px 24px}.letter-text{line-height:1.8}.motifs{margin-top:50px;gap:7px}.motif{padding:14px 5px;font-size:.88rem}.motif b{font-size:1.6rem}.closing{margin-top:45px}.rose-glass{opacity:.48;right:2%;top:84px}.comet{right:6%;top:16%}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
-
 <body>
-  <!--
-    IMPORTANTE:
-    Sube tu canción al repositorio con el nombre musica.mp3.
-    Si quieres otro nombre, cambia src="musica.mp3" por el nombre real del archivo.
-  -->
-  <audio id="musicaFondo" src="musica.mp3" loop></audio>
-
-  <!-- PANTALLA DE CONTRASEÑA -->
-  <section class="password-screen" id="passwordScreen">
-    <div class="password-card">
-      <h1>Para mi Cielo 🤍</h1>
-      <p>Pista: Brilla mucho igual que tú, a veces hasta te llamo igual...</p>
-
-      <input
-        type="password"
-        id="passwordInput"
-        placeholder="Escribe la contraseña"
-        autocomplete="off"
-      >
-
-      <button class="love-btn" onclick="validarPassword()">Entrar ❤</button>
-      <div class="password-error" id="passwordError"></div>
-    </div>
-  </section>
-
-  <!-- ANIMACIÓN DEL SOBRE -->
-  <section class="envelope-screen hidden" id="envelopeScreen">
-    <div class="envelope-box">
-      <div class="envelope" id="envelope" onclick="abrirCarta()">
-        <div class="envelope-letter">❤</div>
-        <div class="envelope-base"></div>
-        <div class="envelope-flap"></div>
-      </div>
-      <p class="envelope-text">Toca el sobre para abrir la carta</p>
-    </div>
-  </section>
-
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="app hidden" id="app">
-    <button class="music-toggle" id="musicBtn" onclick="toggleMusica()">♫ Música</button>
-
-    <!-- Notitas escondidas por toda la pantalla -->
-    <button class="secret-note" style="top: 9%; left: 7%;" data-note="Notita 1: Amo tus ojos, amo tu carita, te amo a ti.">❤</button>
-    <button class="secret-note" style="top: 18%; right: 8%;" data-note="Notita 2: Si encontraste esto, me debes un millón de besos.">❤</button>
-    <button class="secret-note" style="top: 52%; left: 5%;" data-note="Notita 3: Gracias por elegirme incluso en los días difíciles.">❤</button>
-    <button class="secret-note" style="bottom: 14%; right: 9%;" data-note="Notita 4: Eres mi lugar bonito, mi calma y mi solecito.">❤</button>
-    <button class="secret-note" style="bottom: 7%; left: 45%;" data-note="Notita 5: Espero verte pronto y estar como una familia con el Papi.">❤</button>
-
-    <div class="card">
-      <div class="hearts">
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-      </div>
-
-      <h1 class="title">Para mi solecito</h1>
-      <p class="subtitle">Siempre pienso en ti.</p>
-
-      <div class="photo">
-        <img src="image.png" alt="Foto especial">
-      </div>
-
-      <div class="letter">
-        <p>
-          <span class="highlight">Mi princesa, mi niña de ojos color Sol.</span>
-          Como te prometí, siempre estaré para ti y siempre intentaré hacer de tu vida algo especial.
-
-          Sé que a veces no soy la persona más paciente, ni siempre tengo el mejor humor, pero también sé que tú siempre estás ahí, mi vida. Y hoy, en nuestro cuarto mes ya oficial, solo quiero decirte gracias.
-
-          Gracias por estar, gracias por abrirte, por escucharme y por seguir aquí, incluso cuando sé que, con todo lo que pasa, no siempre es fácil.
-
-          Te amo infinito. Y el día que sientas que no se nota, dímelo, porque siempre estaré dispuesto a hacer todo lo posible para que estés feliz, tranquila y orgullosa del hombre que quiere permanecer a tu lado, amarte, cuidarte y, si Dios lo permite, algún día ser tu esposo.
-
-          Quiero seguir viendo esos ojitos brillar, incluso más de lo que ya lo hacen.
-
-          Feliz mes, mi amor. Ojalá sean infinitos más.
-        </p>
-      </div>
-
-      <div class="signature">
-        <p>con todo el amor y adoración,</p>
-        <div class="name">Dario</div>
-      </div>
-
-      <!-- CARRUSEL -->
-      <section class="carousel-section">
-        <h2 class="carousel-title">Nuestros recuerditos</h2>
-
-        <div class="carousel">
-          <button class="carousel-btn" onclick="cambiarFoto(-1)">‹</button>
-
-          <div class="carousel-frame">
-            <img id="carouselImage" src="primera.jpeg" alt="Recuerdo especial">
-          </div>
-
-          <button class="carousel-btn" onclick="cambiarFoto(1)">›</button>
+  <div class="sky" aria-hidden="true"><div class="mist"></div><span class="lantern one"></span><span class="lantern two"></span><span class="lantern three"></span><span class="comet"></span></div>
+  <div class="topbar"><span class="brand">Un recuerdo para nosotros · 9 meses</span><button class="music-button" id="musicButton" type="button">♫ Nuestra música</button></div>
+  <main>
+    <section class="scene" aria-label="Nuestra pista de baile">
+      <svg class="red-thread" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true"><path class="thread-path" d="M-30 600 C190 450 250 720 430 610 S700 320 820 460 1030 710 1160 500 1310 380 1480 470"/></svg>
+      <div class="rose-glass" aria-hidden="true">🌹</div>
+      <div class="scene-heading"><p class="eyebrow">Un baile, una promesa, un hilo rojo</p><h1>Felices 9 meses</h1><p class="scene-subtitle">Y todavía elegiría volver a encontrarte.</p></div>
+      <div class="dance-floor" aria-hidden="true">
+        <div class="floor-disc" id="floorDisc"></div>
+        <span class="spark a">✦</span><span class="spark b">✧</span><span class="spark c">✦</span>
+        <div class="dancers">
+          <svg viewBox="0 0 250 250" role="img" aria-label="Dos figuras de cuento bailando juntas">
+            <g class="girl dancer-glow">
+              <circle cx="78" cy="62" r="20"/><path d="M61 60q2-29 27-21 16 5 13 27l-8-10-7-12-15 13-7 4z" fill="#593b50" stroke="#d8b36e" stroke-width="2"/>
+              <path d="M70 84q10-9 21 0l11 36q-8 12-31 0z"/><path d="M70 90Q47 112 42 138" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M88 91q30-13 46 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
+              <path d="M69 117q12 8 28 2l33 62q-39 29-89 1z"/><path d="M73 180l-13 35M103 181l15 32" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
+            </g>
+            <g class="boy dancer-glow">
+              <circle cx="171" cy="59" r="19"/><path d="M152 57q6-28 34-17l12 18-13-5-7-11-13 13z" fill="#25334f" stroke="#d8b36e" stroke-width="2"/>
+              <path d="M157 83l14-8 17 9 8 45-42 0z" fill="#d9e2ef"/><path d="M160 82l11-8 8 11 8-10 9 10-8 36-23 0z" fill="#384568"/>
+              <path d="M161 91q-24 8-31 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M190 93q-9 19-18 24" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
+              <path d="M157 126h36l-4 52-15 7-16-8z" fill="#263450"/><path d="M165 181l-4 34M185 181l8 33" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
+            </g>
+            <path d="M135 98q10 1 16 8" fill="none" stroke="#ed929a" stroke-width="3" stroke-linecap="round"/>
+          </svg>
         </div>
-
-        <p class="carousel-caption" id="carouselCaption">Ese primer instante.</p>
-      </section>
-
-      <div class="btn-box">
-        <button class="love-btn" onclick="mostrarMensaje()">Haz clic aquí ❤</button>
-        <button class="love-btn" onclick="crearLluviaCorazones()">Sorpresa de corazones</button>
+        <div class="floor-label">Baila conmigo, una vez más</div>
       </div>
+      <div class="scene-footer"><span>La pista se ilumina con cada recuerdo</span><button class="scroll-button" type="button" onclick="document.getElementById('recuerdos').scrollIntoView({behavior:'smooth'})">Ver lo que guardo en el corazón ↓</button></div>
+    </section>
+    <section class="content" id="recuerdos">
+      <header class="chapter"><p class="eyebrow">De aquel primer encuentro hasta hoy</p><h2>Nuestro pequeño universo</h2><p>Entre luces, promesas y caminos que vuelven a cruzarse.</p></header>
+      <div class="memory-layout">
+        <div class="photo-column left">
+          <figure class="photo-card" style="--tilt:-4deg"><img src="assets/recuerdo-01.svg" alt="Un recuerdo de nuestra infancia juntos" loading="lazy"><figcaption>Antes de saber que nos encontraríamos</figcaption></figure>
+          <figure class="photo-card landscape" style="--tilt:3deg"><img src="assets/recuerdo-03.svg" alt="Collage de momentos que hemos compartido" loading="lazy"><figcaption>Pedacitos de nosotros</figcaption></figure>
+        </div>
+        <article class="letter-card" aria-label="Mensaje de aniversario">
+          <p class="letter-kicker">Para ti, con todo mi amor</p><h3>Mi amor bonito</h3>
+          <p class="letter-text">Felices 9 meses, mi amor. Ahora sí ya llegó el niño que esperábamos, jasdjajsd… Mentiras, pero sí: ya pasaron 9 meses desde ese primer momento que nos vimos en persona y al fin pudimos sentir el calor del otro.
 
-      <div class="message-box" id="mensaje"></div>
-    </div>
+Han sido meses de subidas y bajadas, de felicidad, miedo y tristeza, pero siempre ambos deseando poder seguir amándonos y poder, con ayuda de Dios, estar cerca.
+
+Deseo con mucha fuerza que todo mejore, que tú estés mucho mejor y que ambos logremos ese equilibrio, amor, comunicación y necesidades que tenemos. Y sé que con ayuda de Dios será así, y podremos vernos una vez más, para acercarnos a esa última vez que diremos “hasta pronto”…
+
+Te amo y más.</p>
+          <p class="signature">Siempre tuyo ♡</p>
+        </article>
+        <div class="photo-column right">
+          <figure class="photo-card landscape" style="--tilt:3deg"><img src="assets/recuerdo-04.svg" alt="Una foto juntos en una celebración" loading="lazy"><figcaption>La noche de nuestro baile</figcaption></figure>
+          <figure class="photo-card" style="--tilt:-2deg"><img src="assets/recuerdo-02.svg" alt="Un recuerdo de nuestra infancia juntos" loading="lazy"><figcaption>Un hilo rojo, desde siempre</figcaption></figure>
+        </div>
+      </div>
+      <div class="photo-row">
+        <figure class="photo-card landscape" style="--tilt:-2deg"><img src="assets/recuerdo-05.svg" alt="Un viaje juntos" loading="lazy"><figcaption>En cualquier camino, contigo</figcaption></figure>
+        <figure class="photo-card landscape"><img src="assets/recuerdo-06.svg" alt="Un momento cerquita juntos" loading="lazy"><figcaption>Mi lugar favorito: cerquita de ti</figcaption></figure>
+      </div>
+      <div class="motifs" aria-label="Elementos de nuestros cuentos favoritos"><div class="motif"><b>Las luciérnagas</b>que guían el camino</div><div class="motif"><b>Una rosa encantada</b>que guarda su promesa</div><div class="motif"><b>Linternas en el cielo</b>para volver a encontrarnos</div><div class="motif"><b>El hilo rojo</b>que siempre nos acerca</div></div>
+      <div class="closing">Hasta que llegue nuestro próximo abrazo…<strong>te amo y más</strong></div>
+    </section>
   </main>
-
-  <!-- MODAL DE NOTITAS -->
-  <div class="note-modal hidden" id="noteModal">
-    <div class="note-content">
-      <button class="close-note" onclick="cerrarNota()">×</button>
-      <h3>Encontraste una notita</h3>
-      <p id="noteText"></p>
-    </div>
-  </div>
-
-  <div class="heart-rain" id="heartRain"></div>
-
+  <footer class="footer">Hecho con amor para celebrar nuestra historia ♡</footer>
+  <div class="music-note" id="musicDialog" role="dialog" aria-modal="true" aria-labelledby="musicTitle"><div class="music-card"><h3 id="musicTitle">Nuestra música</h3><p>El reproductor usa el archivo <strong>musica.mp3</strong> del repositorio. Para escuchar la mezcla Disney + <em>Your Name</em>, ese archivo debe contener la mezcla que quieras. Algunos navegadores piden tocar el botón para iniciar el audio.</p><div class="music-status" id="musicStatus">La música se activa con un toque.</div><button class="modal-close" id="closeMusic" type="button">Cerrar</button></div></div>
+  <div class="sparkle-field" id="sparkleField" aria-hidden="true"></div>
+  <audio id="music" src="musica.mp3" preload="none" loop></audio>
   <script>
-    /*
-      CAMBIA AQUÍ LA CONTRASEÑA.
-      Ojo: esta contraseña no es de seguridad real; como es una página estática,
-      alguien técnico podría verla en el código. Sirve para la sorpresa romántica.
-    */
-    const PASSWORD = "solecito";
-
-    /*
-      CARRUSEL:
-      Para agregar más fotos:
-      1. Sube la foto al repo, por ejemplo foto3.jpg
-      2. Agrega una línea aquí:
-         { src: "foto3.jpg", texto: "Texto bonito de esa foto." },
-    */
-    const fotos = [
-      { src: "primera.jpeg", texto: "Ese primer instante." },
-      { src: "3.jpeg", texto: "Un recuerdo que siempre me hace sonreír." },
-      { src: "1.jpeg", texto: "La noche perfecta." },
-      { src: "4.jpeg", texto: "I miss you ." }
-    ];
-
-    let fotoActual = 0;
-    let musicaActiva = false;
-    let clicksMensaje = 0;
-
-    const audio = document.getElementById("musicaFondo");
-    audio.volume = 0.35;
-
-    function validarPassword() {
-      const input = document.getElementById("passwordInput");
-      const error = document.getElementById("passwordError");
-      const valor = input.value.trim().toLowerCase();
-
-      if (valor === PASSWORD.toLowerCase()) {
-        error.textContent = "";
-        document.getElementById("passwordScreen").classList.add("hidden");
-        document.getElementById("envelopeScreen").classList.remove("hidden");
-        intentarReproducirMusica();
-      } else {
-        error.textContent = "Ups, esa no es. Pista: algo que me recuerda a ti.";
-        input.value = "";
-        input.focus();
-      }
-    }
-
-    function abrirCarta() {
-      const envelope = document.getElementById("envelope");
-      envelope.classList.add("open");
-
-      setTimeout(() => {
-        document.getElementById("envelopeScreen").classList.add("hidden");
-        document.getElementById("app").classList.remove("hidden");
-        crearLluviaCorazones();
-      }, 950);
-    }
-
-    function intentarReproducirMusica() {
-      audio.play()
-        .then(() => {
-          musicaActiva = true;
-          actualizarBotonMusica();
-        })
-        .catch(() => {
-          musicaActiva = false;
-          actualizarBotonMusica();
-        });
-    }
-
-    function toggleMusica() {
-      if (musicaActiva) {
-        audio.pause();
-        musicaActiva = false;
-      } else {
-        audio.play();
-        musicaActiva = true;
-      }
-
-      actualizarBotonMusica();
-    }
-
-    function actualizarBotonMusica() {
-      const btn = document.getElementById("musicBtn");
-
-      if (!btn) return;
-
-      btn.textContent = musicaActiva ? "♫ Pausar música" : "♫ Reproducir música";
-    }
-
-    function cambiarFoto(direccion) {
-      fotoActual += direccion;
-
-      if (fotoActual < 0) {
-        fotoActual = fotos.length - 1;
-      }
-
-      if (fotoActual >= fotos.length) {
-        fotoActual = 0;
-      }
-
-      const img = document.getElementById("carouselImage");
-      const caption = document.getElementById("carouselCaption");
-
-      img.src = fotos[fotoActual].src;
-      img.alt = fotos[fotoActual].texto;
-      caption.textContent = fotos[fotoActual].texto;
-
-      img.style.animation = "none";
-      void img.offsetWidth;
-      img.style.animation = "softZoom 0.45s ease";
-    }
-
-    function mostrarMensaje() {
-      const mensajes = [
-        "Te amo y más.",
-        "Si ves esto, me debes mil besitos.",
-        "Amo tus ojitos.",
-        "Eres tú mi princesa.",
-        "Gracias por quedarte conmigo.",
-        "Eres mi lugar seguro.",
-        "Nunca olvides lo mucho que vales para mí."
-      ];
-
-      const aleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
-      document.getElementById("mensaje").textContent = aleatorio;
-
-      clicksMensaje++;
-
-      if (clicksMensaje === 5) {
-        document.getElementById("mensaje").textContent = "Sorpresa escondida: ya hiciste 5 clics, eso significa 5 abrazos para mí ❤";
-        crearLluviaCorazones();
-      }
-    }
-
-    function crearLluviaCorazones() {
-      const contenedor = document.getElementById("heartRain");
-      const cantidad = 34;
-
-      for (let i = 0; i < cantidad; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("falling-heart");
-        heart.textContent = ["❤", "💕", "💗", "💖"][Math.floor(Math.random() * 4)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDelay = Math.random() * 0.7 + "s";
-        heart.style.fontSize = (18 + Math.random() * 18) + "px";
-        contenedor.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 4200);
-      }
-    }
-
-    document.querySelectorAll(".secret-note").forEach((note) => {
-      note.addEventListener("click", () => {
-        document.getElementById("noteText").textContent = note.dataset.note;
-        document.getElementById("noteModal").classList.remove("hidden");
-        crearLluviaCorazones();
-      });
+    const audio=document.getElementById('music');
+    const musicDialog=document.getElementById('musicDialog');
+    const musicButton=document.getElementById('musicButton');
+    const musicStatus=document.getElementById('musicStatus');
+    const closeMusicDialog=()=>musicDialog.classList.remove('open');
+    musicButton.addEventListener('click',async()=>{
+      if(!audio.paused){audio.pause();musicButton.textContent='♫ Nuestra música';musicStatus.textContent='Música pausada.';musicDialog.classList.add('open');return}
+      try{await audio.play();musicButton.textContent='♫ Pausar música';musicStatus.textContent='Que empiece nuestro baile.';musicDialog.classList.add('open')}
+      catch{musicStatus.textContent='Falta agregar musica.mp3 con la mezcla de canciones que quieras.';musicDialog.classList.add('open')}
     });
-
-    function cerrarNota() {
-      document.getElementById("noteModal").classList.add("hidden");
-    }
-
-    document.getElementById("noteModal").addEventListener("click", (event) => {
-      if (event.target.id === "noteModal") {
-        cerrarNota();
-      }
-    });
-
-    document.getElementById("passwordInput").addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        validarPassword();
-      }
-    });
+    document.getElementById('closeMusic').addEventListener('click',closeMusicDialog);
+    musicDialog.addEventListener('click',event=>{if(event.target===musicDialog)closeMusicDialog()});
+    setTimeout(()=>document.getElementById('floorDisc').classList.add('cleaned'),3600);
+    const field=document.getElementById('sparkleField');
+    function sparkleRain(){for(let i=0;i<22;i++){const s=document.createElement('span');s.className='floating-spark';s.textContent=['✦','✧','♥'][Math.floor(Math.random()*3)];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(3+Math.random()*3)+'s';s.style.animationDelay=Math.random()*.8+'s';s.style.fontSize=(12+Math.random()*14)+'px';field.appendChild(s);setTimeout(()=>s.remove(),7000)}}
+    setTimeout(sparkleRain,1300);
   </script>
 </body>
 </html>
