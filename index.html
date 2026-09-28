@@ -35,13 +35,19 @@
     .scene-subtitle{font:500 clamp(.9rem,2vw,1.08rem) 'Playfair Display',serif;color:rgba(255,246,231,.79);margin:16px 0 0}
     .red-thread{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.65}
     .thread-path{fill:none;stroke:#e97987;stroke-width:2;stroke-dasharray:9 10;filter:drop-shadow(0 0 6px rgba(255,116,144,.7));animation:thread 18s linear infinite}
-    .dance-floor{position:relative;width:min(520px,90vw);height:min(46vh,390px);min-height:290px;margin-top:28px;display:grid;place-items:center;perspective:800px;z-index:1}
+    .story-cast{position:relative;z-index:2;width:min(1050px,96vw);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px auto 0}
+    .story-card{position:relative;min-width:0;overflow:hidden;padding:8px 10px 10px;border:1px solid rgba(244,213,138,.24);border-radius:16px;background:linear-gradient(145deg,rgba(255,247,224,.11),rgba(26,25,55,.58));box-shadow:inset 0 1px rgba(255,255,255,.08),0 12px 28px rgba(0,0,0,.14);backdrop-filter:blur(8px);transition:transform .3s,border-color .3s}
+    .story-card:hover{transform:translateY(-4px);border-color:rgba(244,213,138,.65)}
+    .story-card svg{display:block;width:100%;height:94px;overflow:visible}
+    .story-card h3{margin:1px 0 2px;color:#fff0c5;font:1.24rem Great Vibes,cursive;line-height:1.05}
+    .story-card p{margin:0;color:rgba(255,246,231,.58);font-size:.59rem;letter-spacing:.1em;text-transform:uppercase}
+    .dance-floor{position:relative;width:min(520px,90vw);height:min(38vh,330px);min-height:250px;margin-top:8px;display:grid;place-items:center;perspective:800px;z-index:1}
     .floor-disc{position:absolute;inset:5% 2% 0;border-radius:50%;transform:rotateX(62deg);transform-origin:center 70%;background:radial-gradient(ellipse at center,rgba(248,221,160,.23),rgba(98,76,123,.25) 48%,rgba(16,22,47,.38) 70%),repeating-linear-gradient(0deg,transparent 0 37px,rgba(255,225,160,.17) 38px 39px),repeating-linear-gradient(90deg,transparent 0 37px,rgba(255,225,160,.14) 38px 39px);border:1px solid rgba(248,221,160,.28);box-shadow:0 0 45px rgba(236,183,123,.18),inset 0 0 34px rgba(255,226,169,.18);overflow:hidden}
     .floor-disc:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 8%,rgba(255,242,208,.92) 19%,rgba(255,242,208,.1) 32%,transparent 48%);transform:translateX(-130%);animation:sweep 5.7s .7s ease-in-out forwards;filter:blur(3px)}
     .floor-disc:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse,transparent 32%,rgba(19,19,42,.82) 75%);opacity:.8;transition:opacity 2s ease}
     .floor-disc.cleaned:after{opacity:.12}
     .floor-label{position:absolute;bottom:1%;z-index:2;color:rgba(255,240,197,.74);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase}
-    .dancers{position:relative;width:240px;height:250px;z-index:2;filter:drop-shadow(0 10px 24px rgba(255,211,141,.25));animation:coupleSway 2.3s ease-in-out infinite}
+    .dancers{position:relative;width:232px;height:238px;z-index:2;filter:drop-shadow(0 10px 24px rgba(255,211,141,.3));animation:coupleSway 2.3s ease-in-out infinite}
     .dancers svg{width:100%;height:100%;overflow:visible}
     .girl{transform-origin:92px 153px;animation:danceGirl 2.3s ease-in-out infinite}
     .boy{transform-origin:160px 148px;animation:danceBoy 2.3s ease-in-out infinite}
@@ -78,17 +84,14 @@
     .closing{text-align:center;margin:58px auto 0;color:rgba(255,246,231,.72);font:1.15rem 'Playfair Display',serif}
     .closing strong{display:block;font:3rem 'Great Vibes',cursive;color:var(--pink);margin-top:5px}
     .footer{text-align:center;padding:0 20px 35px;color:rgba(255,246,231,.38);font-size:.75rem;letter-spacing:.12em}
-    .music-note{position:fixed;inset:0;z-index:10;background:rgba(7,10,26,.72);backdrop-filter:blur(12px);display:none;place-items:center;padding:22px}
-    .music-note.open{display:grid}
-    .music-card{width:min(100%,460px);padding:30px;border:1px solid rgba(244,213,138,.4);border-radius:22px;background:linear-gradient(145deg,#27233f,#111831);box-shadow:0 24px 80px rgba(0,0,0,.4);text-align:center}
-    .music-card h3{font:2.5rem 'Great Vibes',cursive;color:var(--gold);margin:0 0 8px}.music-card p{line-height:1.7;color:rgba(255,246,231,.75)}
-    .music-status{font-size:.83rem;color:#f2d99d;min-height:20px;margin-top:12px}
-    .youtube-frame{width:min(100%,480px);height:270px;min-height:203px;margin:18px auto 14px;border-radius:14px;overflow:hidden;background:#080d1e}
-    #youtubePlayer{width:100%;height:100%;min-height:203px}
-    .track-list{display:grid;gap:7px;margin:12px auto 4px;max-width:390px}
-    .track-choice{border:1px solid rgba(244,213,138,.25);border-radius:12px;padding:9px 12px;background:rgba(255,255,255,.04);color:rgba(255,246,231,.77);text-align:left;font-size:.82rem;cursor:pointer;transition:.2s}
-    .track-choice:hover,.track-choice[aria-current="true"]{border-color:rgba(244,213,138,.75);background:rgba(244,213,138,.13);color:#fff2c8}
-    .modal-close{margin-top:8px;border:0;background:none;color:var(--pink);cursor:pointer;padding:10px}
+    .music-dock{position:fixed;right:18px;bottom:18px;z-index:8;width:228px;padding:12px;border:1px solid rgba(244,213,138,.44);border-radius:19px;background:linear-gradient(145deg,rgba(38,34,62,.97),rgba(13,20,42,.97));box-shadow:0 18px 54px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.1);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);transition:.3s}
+    .music-dock.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 2px 8px}
+    .music-heading strong{display:block;color:#fff0c5;font:1.38rem Great Vibes,cursive}.music-heading span{color:rgba(255,246,231,.58);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+    .music-status{margin:0 2px 8px;color:#f2d99d;font-size:.69rem;line-height:1.4;min-height:16px}
+    .youtube-frame{width:200px;height:200px;margin:0 auto;border-radius:11px;overflow:hidden;background:#080d1e}
+    #youtubePlayer{width:200px;height:200px}
+    .music-hint{margin:8px 2px 0;color:rgba(255,246,231,.54);font-size:.63rem;line-height:1.4;text-align:center}
     .sparkle-field{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
     .floating-spark{position:absolute;top:-30px;color:#ffe6a3;animation:fall linear forwards;text-shadow:0 0 13px #e6bb75}
     @keyframes twinkle{to{opacity:.28;transform:scale(1.02)}}
@@ -103,14 +106,14 @@
     @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     @keyframes reveal{to{opacity:1;filter:blur(0);transform:translateY(0)}}
     @keyframes fall{to{transform:translateY(110vh) rotate(320deg);opacity:0}}
-    @media(max-width:850px){.rose-glass{right:5%;top:86px;transform:scale(.72)}.memory-layout{grid-template-columns:1fr;max-width:680px}.photo-column{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}.photo-column.left{order:2}.letter-card{order:1}.photo-column.right{order:3}.photo-column .photo-card:nth-child(2){--tilt:2deg}.photo-row{margin-top:22px}.motifs{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.topbar{top:14px;width:92%}.brand{font-size:.6rem;letter-spacing:.15em}.music-button{padding:9px 13px;font-size:.83rem}.scene{padding-top:110px}.scene-heading{max-width:90%}.scene-subtitle{max-width:290px;margin-left:auto;margin-right:auto}.dance-floor{height:38vh;min-height:265px;margin-top:28px}.dancers{width:210px;height:220px}.floor-label{font-size:.58rem}.scene-footer{bottom:20px}.content{padding:52px 15px 65px}.photo-column{gap:13px}.photo-card{padding:7px 7px 29px}.photo-card figcaption{font-size:1rem;bottom:7px}.photo-row{gap:12px}.photo-row .photo-card:nth-child(2){margin-top:17px}.photo-row .photo-card:nth-child(3){margin-top:4px}.letter-card{padding:31px 24px}.letter-text{line-height:1.8}.motifs{margin-top:50px;gap:7px}.motif{padding:14px 5px;font-size:.88rem}.motif b{font-size:1.6rem}.closing{margin-top:45px}.rose-glass{opacity:.48;right:2%;top:84px}.comet{right:6%;top:16%}}
+    @media(max-width:850px){.rose-glass{right:5%;top:86px;transform:scale(.72)}.story-cast{width:min(620px,94vw);grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px}.story-card svg{height:76px}.memory-layout{grid-template-columns:1fr;max-width:680px}.photo-column{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}.photo-column.left{order:2}.letter-card{order:1}.photo-column.right{order:3}.photo-column .photo-card:nth-child(2){--tilt:2deg}.photo-row{margin-top:22px}.motifs{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.topbar{top:14px;width:92%}.brand{font-size:.6rem;letter-spacing:.15em}.music-button{padding:9px 11px;font-size:.72rem}.scene{padding-top:105px}.scene-heading{max-width:90%}.scene-subtitle{max-width:290px;margin-left:auto;margin-right:auto}.story-cast{width:min(410px,94vw);gap:7px;margin-top:13px}.story-card{padding:6px 7px 8px;border-radius:12px}.story-card svg{height:57px}.story-card h3{font-size:1.12rem}.story-card p{font-size:.49rem;letter-spacing:.07em}.dance-floor{height:32vh;min-height:222px;margin-top:3px}.dancers{width:190px;height:202px}.floor-label{font-size:.58rem}.scene-footer{bottom:20px}.content{padding:52px 15px 65px}.photo-column{gap:13px}.photo-card{padding:7px 7px 29px}.photo-card figcaption{font-size:1rem;bottom:7px}.photo-row{gap:12px}.photo-row .photo-card:nth-child(2){margin-top:17px}.photo-row .photo-card:nth-child(3){margin-top:4px}.letter-card{padding:31px 24px}.letter-text{line-height:1.8}.motifs{margin-top:50px;gap:7px}.motif{padding:14px 5px;font-size:.88rem}.motif b{font-size:1.6rem}.closing{margin-top:45px}.rose-glass{opacity:.48;right:2%;top:84px}.comet{right:6%;top:16%}.music-dock{right:10px;bottom:10px;width:214px;padding:10px}.music-dock .youtube-frame,.music-dock #youtubePlayer{width:192px;height:192px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
   <div class="sky" aria-hidden="true"><div class="mist"></div><span class="lantern one"></span><span class="lantern two"></span><span class="lantern three"></span><span class="comet"></span></div>
-  <div class="topbar"><span class="brand">Un recuerdo para nosotros · 9 meses</span><button class="music-button" id="musicButton" type="button">♫ Nuestra música</button></div>
+  <div class="topbar"><span class="brand">Un recuerdo para nosotros · 9 meses</span><button class="music-button" id="musicButton" type="button" aria-label="Iniciar o pausar Sparkle">♫ Comenzar Sparkle</button></div>
   <main>
     <section class="scene" aria-label="Nuestra pista de baile">
       <svg class="red-thread" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true"><path class="thread-path" d="M-30 600 C190 450 250 720 430 610 S700 320 820 460 1030 710 1160 500 1310 380 1480 470"/></svg>
@@ -119,23 +122,60 @@
       <div class="dance-floor" aria-hidden="true">
         <div class="floor-disc" id="floorDisc"></div>
         <span class="spark a">✦</span><span class="spark b">✧</span><span class="spark c">✦</span>
-        <div class="dancers">
-          <svg viewBox="0 0 250 250" role="img" aria-label="Dos figuras de cuento bailando juntas">
-            <g class="girl dancer-glow">
-              <circle cx="78" cy="62" r="20"/><path d="M61 60q2-29 27-21 16 5 13 27l-8-10-7-12-15 13-7 4z" fill="#593b50" stroke="#d8b36e" stroke-width="2"/>
-              <path d="M70 84q10-9 21 0l11 36q-8 12-31 0z"/><path d="M70 90Q47 112 42 138" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M88 91q30-13 46 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
-              <path d="M69 117q12 8 28 2l33 62q-39 29-89 1z"/><path d="M73 180l-13 35M103 181l15 32" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
-            </g>
-            <g class="boy dancer-glow">
-              <circle cx="171" cy="59" r="19"/><path d="M152 57q6-28 34-17l12 18-13-5-7-11-13 13z" fill="#25334f" stroke="#d8b36e" stroke-width="2"/>
-              <path d="M157 83l14-8 17 9 8 45-42 0z" fill="#d9e2ef"/><path d="M160 82l11-8 8 11 8-10 9 10-8 36-23 0z" fill="#384568"/>
-              <path d="M161 91q-24 8-31 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M190 93q-9 19-18 24" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
-              <path d="M157 126h36l-4 52-15 7-16-8z" fill="#263450"/><path d="M165 181l-4 34M185 181l8 33" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
-            </g>
-            <path d="M135 98q10 1 16 8" fill="none" stroke="#ed929a" stroke-width="3" stroke-linecap="round"/>
+        <div class="story-cast" aria-label="Personajes de las historias que inspiran nuestro baile">
+        <article class="story-card">
+          <svg viewBox="0 0 180 105" role="img" aria-label="Tiana y Naveen bajo una luciérnaga">
+            <circle cx="28" cy="19" r="11" fill="#f5d888" opacity=".8"/><path d="M23 18q5-7 10 0M28 13v10" stroke="#fff5c9" stroke-width="1.5" fill="none"/>
+            <path d="M22 47q4-13 14-11 12 3 10 16-10 7-21 0z" fill="#171a2f"/><circle cx="35" cy="42" r="9" fill="#946854"/><path d="M24 38q3-16 17-9l5 10-7-4-6-6-7 10z" fill="#161827"/>
+            <path d="M26 54q8-6 17 0l4 14-12 9-13-8z" fill="#96b66c"/><path d="M24 67q11 4 23 0l12 24q-19 12-44 0z" fill="#71965e"/><path d="M24 54l-8 15M43 55l8 10" stroke="#946854" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="99" cy="43" r="9" fill="#d7a579"/><path d="M90 41q1-15 16-10l7 9-8-2-5-6-8 9z" fill="#37292b"/><path d="M91 54h17l7 14-16 7-12-8z" fill="#f2e5ca"/><path d="M91 70h19l4 22H87z" fill="#d8bb81"/>
+            <path d="M65 95q18-11 35 0M116 94q14-13 26-1" stroke="#a6c77b" stroke-width="3" fill="none" stroke-linecap="round"/>
           </svg>
-        </div>
-        <div class="floor-label">Baila conmigo, una vez más</div>
+          <h3>Tiana &amp; Naveen</h3><p>La princesa y el sapo · luciérnagas</p>
+        </article>
+        <article class="story-card">
+          <svg viewBox="0 0 180 105" role="img" aria-label="Belle y la Bestia con una rosa encantada">
+            <path d="M89 11q-9 12 0 19 9-7 0-19z" fill="#ed8199"/><path d="M89 28v12m0-4-7 5m7-7 6 4" stroke="#8db16e" stroke-width="2" fill="none"/>
+            <path d="M25 43q0-16 16-17 16 0 17 18-14 10-33-1z" fill="#5a382e"/><circle cx="42" cy="39" r="10" fill="#f0cfb0"/><path d="M32 37q2-16 15-12l9 11-10-5-7 8z" fill="#603c32"/><path d="M32 52q10-8 20 0l3 15-13 7-13-7z" fill="#f4d785"/><path d="M31 67q11 5 23 0l13 25q-24 12-49 0z" fill="#d9a94f"/><path d="M30 54l-8 12m31-12 9 9" stroke="#f0cfb0" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="112" cy="39" r="10" fill="#98674c"/><path d="M101 36l-4-13 13 9m9 3 8-12 1 17" fill="#98674c" stroke="#c89658" stroke-width="2"/><path d="M100 53q12-9 24 0l7 17-18 9-18-10z" fill="#344568"/><path d="M98 70h28l5 22H93z" fill="#28405b"/><path d="M101 55l-9 12m32-12 9 11" stroke="#98674c" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="89" cy="45" r="24" fill="none" stroke="#f2dda7" stroke-width="1" opacity=".48"/>
+          </svg>
+          <h3>Belle &amp; la Bestia</h3><p>La bella y la bestia · la rosa</p>
+        </article>
+        <article class="story-card">
+          <svg viewBox="0 0 180 105" role="img" aria-label="Rapunzel y Flynn entre linternas">
+            <path d="M33 25q-3-16 12-17 16 1 17 18l-9 1-5-11-8 12z" fill="#e7b96b"/><circle cx="48" cy="30" r="9" fill="#efcfaa"/><path d="M41 39q9-6 17 1l4 16-13 7-13-7z" fill="#a989cc"/><path d="M37 55q12 6 26 0l10 25q-24 13-46 0z" fill="#8970bd"/><path d="M40 22q10-7 17 3l6 19 10 11 8 0" stroke="#e8bd69" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="106" cy="32" r="9" fill="#deb18f"/><path d="M97 30q1-14 14-10l7 11-8-3-5-6-6 8z" fill="#604537"/><path d="M97 43h19l5 15-16 7-14-9z" fill="#7e5744"/><path d="M99 62h18l4 19H94z" fill="#57423d"/><path d="M20 17q9-9 17 0-8 9-17 0zm119 5q8-8 16 0-8 8-16 0zm-8 38q7-7 14 0-7 7-14 0z" fill="#f4d58a" opacity=".8"/>
+            <path d="M21 91q36-9 65 1m-65 6q40-9 77 0" stroke="#e7c06e" stroke-width="2" opacity=".55"/>
+          </svg>
+          <h3>Rapunzel &amp; Flynn</h3><p>Enredados · linternas flotantes</p>
+        </article>
+        <article class="story-card">
+          <svg viewBox="0 0 180 105" role="img" aria-label="Mitsuha y Taki unidos por un hilo rojo bajo un cometa">
+            <path d="M126 10q22 7 33-1-12 14-33 1z" fill="#fff0b2"/><path d="M18 12C49 6 37 34 71 25s35-15 63 2 19 25 31 16" stroke="#e97987" stroke-width="2.4" fill="none"/>
+            <circle cx="49" cy="41" r="9" fill="#e9c4a8"/><path d="M39 39q0-15 12-13l8 12-9-3-5-7-5 10z" fill="#292d42"/><path d="M43 50h15l6 15-12 6-12-8z" fill="#fff5e8"/><path d="M41 62h19l3 22H38z" fill="#b95b65"/><path d="M40 52l-8 13m25-13 9 10" stroke="#e9c4a8" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="111" cy="41" r="9" fill="#e6bfa2"/><path d="M102 38q2-13 13-11l8 11-8-4-5-5-6 9z" fill="#29334a"/><path d="M103 51h17l6 16-13 6-14-8z" fill="#d6e3ee"/><path d="M102 65h20l3 19H99z" fill="#344259"/>
+            <path d="M58 89q24 6 44 0" stroke="#e97987" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Mitsuha &amp; Taki</h3><p>Your Name · el hilo rojo</p>
+        </article>
+      </div>
+      <div class="dancers">
+        <svg viewBox="0 0 250 250" role="img" aria-label="Una pareja baila en el centro de la pista">
+          <g class="girl dancer-glow">
+            <circle cx="78" cy="62" r="20"/><path d="M61 60q2-29 27-21 16 5 13 27l-8-10-7-12-15 13-7 4z" fill="#593b50" stroke="#d8b36e" stroke-width="2"/>
+            <path d="M70 84q10-9 21 0l11 36q-8 12-31 0z"/><path d="M70 90Q47 112 42 138" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M88 91q30-13 46 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
+            <path d="M69 117q12 8 28 2l33 62q-39 29-89 1z"/><path d="M73 180l-13 35M103 181l15 32" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
+          </g>
+          <g class="boy dancer-glow">
+            <circle cx="171" cy="59" r="19"/><path d="M152 57q6-28 34-17l12 18-13-5-7-11-13 13z" fill="#25334f" stroke="#d8b36e" stroke-width="2"/>
+            <path d="M157 83l14-8 17 9 8 45-42 0z" fill="#d9e2ef"/><path d="M160 82l11-8 8 11 8-10 9 10-8 36-23 0z" fill="#384568"/>
+            <path d="M161 91q-24 8-31 7" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/><path d="M190 93q-9 19-18 24" fill="none" stroke="#fff0c2" stroke-width="9" stroke-linecap="round"/>
+            <path d="M157 126h36l-4 52-15 7-16-8z" fill="#263450"/><path d="M165 181l-4 34M185 181l8 33" fill="none" stroke="#fff0c2" stroke-width="8" stroke-linecap="round"/>
+          </g>
+          <path d="M135 98q10 1 16 8" fill="none" stroke="#ed929a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="floor-label">Baila conmigo, una vez más</div>
       </div>
       <div class="scene-footer"><span>La pista se ilumina con cada recuerdo</span><button class="scroll-button" type="button" onclick="document.getElementById('recuerdos').scrollIntoView({behavior:'smooth'})">Ver lo que guardo en el corazón ↓</button></div>
     </section>
@@ -171,40 +211,40 @@ Te amo y más.</p>
     </section>
   </main>
   <footer class="footer">Hecho con amor para celebrar nuestra historia ♡</footer>
-  <div class="music-note" id="musicDialog" role="dialog" aria-modal="true" aria-labelledby="musicTitle"><div class="music-card"><h3 id="musicTitle">Nuestra música</h3><p>Una lista de canciones oficiales que nos llevan de Nueva Orleans a las linternas de Rapunzel y al cielo de <em>Your Name</em>. El reproductor de YouTube necesita que toques reproducir.</p><div class="youtube-frame"><div id="youtubePlayer"></div></div><div class="track-list" id="trackList"></div><div class="music-status" id="musicStatus" aria-live="polite">Abre el reproductor para empezar.</div><button class="modal-close" id="closeMusic" type="button">Cerrar</button></div></div>
+  <aside class="music-dock" id="musicDock" aria-label="Reproductor de música"><div class="music-heading"><div><strong>Sparkle</strong><span>RADWIMPS · Your Name</span></div></div><div class="music-status" id="musicStatus" aria-live="polite">Preparando la canción…</div><div class="youtube-frame"><div id="youtubePlayer"></div></div><p class="music-hint">La canción seguirá sonando mientras recorres la página.</p></aside>
   <div class="sparkle-field" id="sparkleField" aria-hidden="true"></div>
   <script>
-    const tracks=[
-      {id:'iSD7SFwFJWc',title:'Ma Belle Evangeline',film:'La princesa y el sapo'},
-      {id:'vScUbKoE-qs',title:'Beauty and the Beast',film:'La bella y la bestia'},
-      {id:'ILRs2r6lcHY',title:'I See the Light',film:'Enredados'},
-      {id:'-J9FuvPmMoI',title:'Sparkle — movie ver.',film:'Your Name'}
-    ];
-    const musicDialog=document.getElementById('musicDialog');
+    const track={id:'-J9FuvPmMoI',title:'Sparkle — movie ver.',artist:'RADWIMPS'};
+    const musicDock=document.getElementById('musicDock');
     const musicButton=document.getElementById('musicButton');
     const musicStatus=document.getElementById('musicStatus');
-    const closeMusicDialog=()=>musicDialog.classList.remove('open');
-    let player=null,apiRequested=false,activeTrack=0,playerReady=false;
-    function paintTrackList(){
-      const list=document.getElementById('trackList');
-      list.replaceChildren();
-      tracks.forEach((track,index)=>{
-        const button=document.createElement('button');
-        button.className='track-choice';
-        button.type='button';
-        button.textContent=`${index+1}. ${track.title} · ${track.film}`;
-        button.setAttribute('aria-current',index===activeTrack?'true':'false');
-        button.addEventListener('click',()=>playTrack(index));
-        list.appendChild(button);
+    let player=null,apiRequested=false,playerReady=false;
+    function setMusicStatus(message){musicStatus.textContent=message}
+    function createYouTubePlayer(){
+      if(player||!window.YT||!window.YT.Player)return;
+      player=new YT.Player('youtubePlayer',{
+        width:'200',height:'200',videoId:track.id,
+        playerVars:{autoplay:1,controls:1,playsinline:1,rel:0,loop:1,playlist:track.id,enablejsapi:1,origin:window.location.origin},
+        events:{
+          onReady:event=>{playerReady=true;setMusicStatus('Si no empieza sola, pulsa reproducir en el video.');event.target.playVideo()},
+          onStateChange:event=>{
+            if(event.data===YT.PlayerState.PLAYING){musicButton.textContent='♫ Pausar Sparkle';setMusicStatus('Sonando: Sparkle — RADWIMPS')}
+            else if(event.data===YT.PlayerState.PAUSED){musicButton.textContent='♫ Reanudar Sparkle';setMusicStatus('En pausa')}
+            else if(event.data===YT.PlayerState.ENDED){event.target.playVideo()}
+          },
+          onError:()=>setMusicStatus('No se pudo cargar el video. Intenta reproducirlo directamente aquí.'),
+          onAutoplayBlocked:()=>setMusicStatus('Tu navegador bloqueó el inicio. Pulsa reproducir en el video.')
+        }
       });
     }
-    function updateMusicStatus(message){musicStatus.textContent=message;paintTrackList()}
-    function openMusic(){
-      musicDialog.classList.add('open');
-      if(playerReady){player.playVideo();updateMusicStatus(`Reproduciendo: ${tracks[activeTrack].title}.`)}
-      else{updateMusicStatus('Si no inicia automáticamente, toca reproducir en el video.');requestYouTubePlayer()}
-    }
-    function requestYouTubePlayer(){
+    function startAmbientMusic(){
+      musicDock.classList.add('open');
+      if(playerReady){
+        if(player.getPlayerState()===YT.PlayerState.PLAYING){player.pauseVideo()}
+        else{player.playVideo()}
+        return;
+      }
+      setMusicStatus('Cargando Sparkle…');
       if(window.YT&&window.YT.Player){createYouTubePlayer();return}
       if(apiRequested)return;
       apiRequested=true;
@@ -212,30 +252,8 @@ Te amo y más.</p>
       script.src='https://www.youtube.com/iframe_api';
       document.head.appendChild(script);
     }
-    function createYouTubePlayer(){
-      if(player)return;
-      player=new YT.Player('youtubePlayer',{
-        width:'100%',height:'100%',videoId:tracks[activeTrack].id,
-        playerVars:{controls:1,playsinline:1,rel:0,enablejsapi:1,origin:window.location.origin},
-        events:{
-          onReady:event=>{playerReady=true;event.target.playVideo();updateMusicStatus(`Lista: ${tracks[activeTrack].title}. Si el navegador lo bloquea, toca reproducir en el video.`)},
-          onStateChange:event=>{if(event.data===YT.PlayerState.ENDED){activeTrack=(activeTrack+1)%tracks.length;player.loadVideoById(tracks[activeTrack].id);updateMusicStatus(`Siguiente: ${tracks[activeTrack].title}.`)}},
-          onError:()=>updateMusicStatus('Esta canción no se pudo cargar. Elige otra de la lista.'),
-          onAutoplayBlocked:()=>updateMusicStatus('El navegador bloqueó el inicio automático. Toca reproducir en el video.')
-        }
-      });
-    }
-    function playTrack(index){
-      activeTrack=(index+tracks.length)%tracks.length;
-      updateMusicStatus(`Seleccionada: ${tracks[activeTrack].title}.`);
-      if(playerReady)player.loadVideoById(tracks[activeTrack].id);
-      else requestYouTubePlayer();
-    }
     window.onYouTubeIframeAPIReady=createYouTubePlayer;
-    musicButton.addEventListener('click',openMusic);
-    document.getElementById('closeMusic').addEventListener('click',closeMusicDialog);
-    musicDialog.addEventListener('click',event=>{if(event.target===musicDialog)closeMusicDialog()});
-    paintTrackList();
+    musicButton.addEventListener('click',startAmbientMusic);
     setTimeout(()=>document.getElementById('floorDisc').classList.add('cleaned'),3600);
     const field=document.getElementById('sparkleField');
     function sparkleRain(){for(let i=0;i<22;i++){const s=document.createElement('span');s.className='floating-spark';s.textContent=['✦','✧','♥'][Math.floor(Math.random()*3)];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(3+Math.random()*3)+'s';s.style.animationDelay=Math.random()*.8+'s';s.style.fontSize=(12+Math.random()*14)+'px';field.appendChild(s);setTimeout(()=>s.remove(),7000)}}
