@@ -83,6 +83,11 @@
     .music-card{width:min(100%,460px);padding:30px;border:1px solid rgba(244,213,138,.4);border-radius:22px;background:linear-gradient(145deg,#27233f,#111831);box-shadow:0 24px 80px rgba(0,0,0,.4);text-align:center}
     .music-card h3{font:2.5rem 'Great Vibes',cursive;color:var(--gold);margin:0 0 8px}.music-card p{line-height:1.7;color:rgba(255,246,231,.75)}
     .music-status{font-size:.83rem;color:#f2d99d;min-height:20px;margin-top:12px}
+    .youtube-frame{width:min(100%,480px);height:270px;min-height:203px;margin:18px auto 14px;border-radius:14px;overflow:hidden;background:#080d1e}
+    #youtubePlayer{width:100%;height:100%;min-height:203px}
+    .track-list{display:grid;gap:7px;margin:12px auto 4px;max-width:390px}
+    .track-choice{border:1px solid rgba(244,213,138,.25);border-radius:12px;padding:9px 12px;background:rgba(255,255,255,.04);color:rgba(255,246,231,.77);text-align:left;font-size:.82rem;cursor:pointer;transition:.2s}
+    .track-choice:hover,.track-choice[aria-current="true"]{border-color:rgba(244,213,138,.75);background:rgba(244,213,138,.13);color:#fff2c8}
     .modal-close{margin-top:8px;border:0;background:none;color:var(--pink);cursor:pointer;padding:10px}
     .sparkle-field{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
     .floating-spark{position:absolute;top:-30px;color:#ffe6a3;animation:fall linear forwards;text-shadow:0 0 13px #e6bb75}
@@ -166,22 +171,71 @@ Te amo y más.</p>
     </section>
   </main>
   <footer class="footer">Hecho con amor para celebrar nuestra historia ♡</footer>
-  <div class="music-note" id="musicDialog" role="dialog" aria-modal="true" aria-labelledby="musicTitle"><div class="music-card"><h3 id="musicTitle">Nuestra música</h3><p>El reproductor usa el archivo <strong>musica.mp3</strong> del repositorio. Para escuchar la mezcla Disney + <em>Your Name</em>, ese archivo debe contener la mezcla que quieras. Algunos navegadores piden tocar el botón para iniciar el audio.</p><div class="music-status" id="musicStatus">La música se activa con un toque.</div><button class="modal-close" id="closeMusic" type="button">Cerrar</button></div></div>
+  <div class="music-note" id="musicDialog" role="dialog" aria-modal="true" aria-labelledby="musicTitle"><div class="music-card"><h3 id="musicTitle">Nuestra música</h3><p>Una lista de canciones oficiales que nos llevan de Nueva Orleans a las linternas de Rapunzel y al cielo de <em>Your Name</em>. El reproductor de YouTube necesita que toques reproducir.</p><div class="youtube-frame"><div id="youtubePlayer"></div></div><div class="track-list" id="trackList"></div><div class="music-status" id="musicStatus" aria-live="polite">Abre el reproductor para empezar.</div><button class="modal-close" id="closeMusic" type="button">Cerrar</button></div></div>
   <div class="sparkle-field" id="sparkleField" aria-hidden="true"></div>
-  <audio id="music" src="musica.mp3" preload="none" loop></audio>
   <script>
-    const audio=document.getElementById('music');
+    const tracks=[
+      {id:'iSD7SFwFJWc',title:'Ma Belle Evangeline',film:'La princesa y el sapo'},
+      {id:'vScUbKoE-qs',title:'Beauty and the Beast',film:'La bella y la bestia'},
+      {id:'ILRs2r6lcHY',title:'I See the Light',film:'Enredados'},
+      {id:'-J9FuvPmMoI',title:'Sparkle — movie ver.',film:'Your Name'}
+    ];
     const musicDialog=document.getElementById('musicDialog');
     const musicButton=document.getElementById('musicButton');
     const musicStatus=document.getElementById('musicStatus');
     const closeMusicDialog=()=>musicDialog.classList.remove('open');
-    musicButton.addEventListener('click',async()=>{
-      if(!audio.paused){audio.pause();musicButton.textContent='♫ Nuestra música';musicStatus.textContent='Música pausada.';musicDialog.classList.add('open');return}
-      try{await audio.play();musicButton.textContent='♫ Pausar música';musicStatus.textContent='Que empiece nuestro baile.';musicDialog.classList.add('open')}
-      catch{musicStatus.textContent='Falta agregar musica.mp3 con la mezcla de canciones que quieras.';musicDialog.classList.add('open')}
-    });
+    let player=null,apiRequested=false,activeTrack=0,playerReady=false;
+    function paintTrackList(){
+      const list=document.getElementById('trackList');
+      list.replaceChildren();
+      tracks.forEach((track,index)=>{
+        const button=document.createElement('button');
+        button.className='track-choice';
+        button.type='button';
+        button.textContent=`${index+1}. ${track.title} · ${track.film}`;
+        button.setAttribute('aria-current',index===activeTrack?'true':'false');
+        button.addEventListener('click',()=>playTrack(index));
+        list.appendChild(button);
+      });
+    }
+    function updateMusicStatus(message){musicStatus.textContent=message;paintTrackList()}
+    function openMusic(){
+      musicDialog.classList.add('open');
+      if(playerReady){player.playVideo();updateMusicStatus(`Reproduciendo: ${tracks[activeTrack].title}.`)}
+      else{updateMusicStatus('Si no inicia automáticamente, toca reproducir en el video.');requestYouTubePlayer()}
+    }
+    function requestYouTubePlayer(){
+      if(window.YT&&window.YT.Player){createYouTubePlayer();return}
+      if(apiRequested)return;
+      apiRequested=true;
+      const script=document.createElement('script');
+      script.src='https://www.youtube.com/iframe_api';
+      document.head.appendChild(script);
+    }
+    function createYouTubePlayer(){
+      if(player)return;
+      player=new YT.Player('youtubePlayer',{
+        width:'100%',height:'100%',videoId:tracks[activeTrack].id,
+        playerVars:{controls:1,playsinline:1,rel:0,enablejsapi:1,origin:window.location.origin},
+        events:{
+          onReady:event=>{playerReady=true;event.target.playVideo();updateMusicStatus(`Lista: ${tracks[activeTrack].title}. Si el navegador lo bloquea, toca reproducir en el video.`)},
+          onStateChange:event=>{if(event.data===YT.PlayerState.ENDED){activeTrack=(activeTrack+1)%tracks.length;player.loadVideoById(tracks[activeTrack].id);updateMusicStatus(`Siguiente: ${tracks[activeTrack].title}.`)}},
+          onError:()=>updateMusicStatus('Esta canción no se pudo cargar. Elige otra de la lista.'),
+          onAutoplayBlocked:()=>updateMusicStatus('El navegador bloqueó el inicio automático. Toca reproducir en el video.')
+        }
+      });
+    }
+    function playTrack(index){
+      activeTrack=(index+tracks.length)%tracks.length;
+      updateMusicStatus(`Seleccionada: ${tracks[activeTrack].title}.`);
+      if(playerReady)player.loadVideoById(tracks[activeTrack].id);
+      else requestYouTubePlayer();
+    }
+    window.onYouTubeIframeAPIReady=createYouTubePlayer;
+    musicButton.addEventListener('click',openMusic);
     document.getElementById('closeMusic').addEventListener('click',closeMusicDialog);
     musicDialog.addEventListener('click',event=>{if(event.target===musicDialog)closeMusicDialog()});
+    paintTrackList();
     setTimeout(()=>document.getElementById('floorDisc').classList.add('cleaned'),3600);
     const field=document.getElementById('sparkleField');
     function sparkleRain(){for(let i=0;i<22;i++){const s=document.createElement('span');s.className='floating-spark';s.textContent=['✦','✧','♥'][Math.floor(Math.random()*3)];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(3+Math.random()*3)+'s';s.style.animationDelay=Math.random()*.8+'s';s.style.fontSize=(12+Math.random()*14)+'px';field.appendChild(s);setTimeout(()=>s.remove(),7000)}}
